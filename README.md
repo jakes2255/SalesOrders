@@ -1,5 +1,5 @@
 # Sales Order Management App (SAP CAP + Fiori Elements)
-A full-stack SAP application using modern technologies
+
 🛠️ Technologies Used
 SAP CAP (Cloud Application Programming Model)
 
