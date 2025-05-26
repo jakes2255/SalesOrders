@@ -21,5 +21,11 @@
       "kind": "sqlite",
       "credentials": { "url": "db/my-bookshop.sqlite" }
    }
-}}
+}},
+  "fiori": {
+    "preview": true
+  },
+  "server": {
+    "index": true
+  }
 }
