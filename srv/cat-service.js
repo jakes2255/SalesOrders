@@ -1,6 +1,6 @@
   module.exports = (srv) => {
 
-  const {Books} = cds.entities ('my.bookshop')
+  const {Publications} = cds.entities ('my.bookshop')
 
   // Reduce stock of ordered books
   srv.before ('CREATE', 'Orders', async (req) => {
@@ -8,7 +8,7 @@
     if (!order.amount || order.amount <= 0)  return req.error (400, 'Order at least 1 book')
     const bookshopTransaction  = cds.transaction(req)
     const affectedRows = await bookshopTransaction .run (
-      UPDATE (Books)
+      UPDATE (Publications)
         .set   ({ stock: {'-=': order.amount}})
         .where ({ stock: {'>=': order.amount},/*and*/ ID: order.book_ID})
     )
@@ -16,7 +16,7 @@
   })
 
   // Add some discount for overstocked books
-  srv.after ('READ', 'Books', each => {
+  srv.after ('READ', 'Publications', each => {
     if (each.stock > 111)  each.title += ' -- 11% discount!'
   })
 
