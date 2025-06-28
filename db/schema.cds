@@ -20,3 +20,9 @@ entity Orders : managed {
   country : Country;
   amount  : Integer;
 }
+
+entity CatalogService {
+  key ID : Integer;
+  cat    : String;
+  service: String;
+}
