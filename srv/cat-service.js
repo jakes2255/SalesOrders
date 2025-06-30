@@ -15,9 +15,15 @@
     if (affectedBooks === 0)  req.error (409, "Sold out, sorry")
   })
 
-  // Add some discount for overstocked Publications
+  // Add some items for popular Publications
   srv.after ('READ', 'Publications', each => {
     if (each.stock > 111)  each.title += ' -- 11% discount!'
   })
+
+  // Reduce pricey books
+  srv.after ('READ', 'Publications', each => {
+    if (each.amo > 1000)  each.stock -= each.stock
+  })
+
 
 }
