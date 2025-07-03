@@ -25,5 +25,9 @@
     if (each.amo > 1000)  each.stock -= each.stock
   })
 
+  // Add a virtual field for stock status
+  srv.after('READ', 'Publications', (each) => {
+      each.stockStatus = each.stock > 0 ? 'Available' : 'Out of Stock';
+  })
 
 }
