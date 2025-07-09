@@ -1,3 +1,4 @@
+BookID,BookTitle,AuthorID,Quantity,Language,Country,Currency,Active,CreatedOn,UpdatedOn,CreatedBy,UpdatedBy
 201,Wuthering Heights,101,12,English,United Kingdom,GBP,true,2025-07-07,,SYSTEM,
 207,Jane Eyre,107,11,English,United Kingdom,GBP,true,2025-07-07,,SYSTEM,
 251,The Raven,150,333,English,United States,USD,true,2025-07-07,,SYSTEM,
