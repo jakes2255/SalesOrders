@@ -1,14 +1,16 @@
-101,Emily Brontë
-107,Charlote Brontë
-150,Edgar Allen Poe
-170,Richard Carpenter
-180,Vaikom Muhammad Basheer
-185,Thakazhi Sivasankara Pillai
-190,O. V. Vijayan
-195,M. T. Vasudevan Nair
-200,Sugathakumari
-205,Vyloppilli Sreedhara Menon
-210,Kamala Surayya
-215,Madhavikutty
-220,Sreekanteswaram Padmanabha Pillai
-225,P. Kunhiraman Nair
+AuthorID,AuthorName,Country,Language,Active,CreatedOn,UpdatedOn,CreatedBy,UpdatedBy
+101,Emily Brontë,United Kingdom,English,true,2025-07-07,,SYSTEM,
+107,Charlotte Brontë,United Kingdom,English,true,2025-07-07,,SYSTEM,
+150,Edgar Allen Poe,United States,English,true,2025-07-07,,SYSTEM,
+170,Richard Carpenter,United Kingdom,English,true,2025-07-07,,SYSTEM,
+180,Vaikom Muhammad Basheer,India,Malayalam,true,2025-07-07,,SYSTEM,
+185,Thakazhi Sivasankara Pillai,India,Malayalam,true,2025-07-07,,SYSTEM,
+190,O. V. Vijayan,India,Malayalam,true,2025-07-07,,SYSTEM,
+195,M. T. Vasudevan Nair,India,Malayalam,true,2025-07-07,,SYSTEM,
+200,Sugathakumari,India,Malayalam,true,2025-07-07,,SYSTEM,
+205,Vyloppilli Sreedhara Menon,India,Malayalam,true,2025-07-07,,SYSTEM,
+210,Kamala Surayya,India,Malayalam,true,2025-07-07,,SYSTEM,
+215,Madhavikutty,India,Malayalam,true,2025-07-07,,SYSTEM,
+220,Sreekanteswaram Padmanabha Pillai,India,Malayalam,true,2025-07-07,,SYSTEM,
+225,P. Kunhiraman Nair,India,Malayalam,true,2025-07-07,,SYSTEM,
+

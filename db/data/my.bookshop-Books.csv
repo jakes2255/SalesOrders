@@ -1,15 +1,16 @@
-201,Wuthering Heights,101,12
-207,Jane Eyre,107,11
-251,The Raven,150,333
-252,Eleonora,150,555
-271,Catweazle,170,22
-281,Pathummayude Aadu,180,18
-285,Chemmeen,185,24
-290,Khasakinte Ithihasam,190,30
-295,Randamoozham,195,28
-300,Manasilekku Oru Paathayam,200,15
-305,Makarakoythu,205,21
-310,Ente Katha,210,17
-315,My Story,215,19
-320,Sabhayum Samvidhanavum,220,12
-325,Thrikarthika,225,14
+201,Wuthering Heights,101,12,English,true,2025-07-07,,SYSTEM,
+207,Jane Eyre,107,11,English,true,2025-07-07,,SYSTEM,
+251,The Raven,150,333,English,true,2025-07-07,,SYSTEM,
+252,Eleonora,150,555,English,true,2025-07-07,,SYSTEM,
+271,Catweazle,170,22,English,true,2025-07-07,,SYSTEM,
+281,Pathummayude Aadu,180,18,Malayalam,true,2025-07-07,,SYSTEM,
+285,Chemmeen,185,24,Malayalam,true,2025-07-07,,SYSTEM,
+290,Khasakinte Ithihasam,190,30,Malayalam,true,2025-07-07,,SYSTEM,
+295,Randamoozham,195,28,Malayalam,true,2025-07-07,,SYSTEM,
+300,Manasilekku Oru Paathayam,200,15,Malayalam,true,2025-07-07,,SYSTEM,
+305,Makarakoythu,205,21,Malayalam,true,2025-07-07,,SYSTEM,
+310,Ente Katha,210,17,Malayalam,true,2025-07-07,,SYSTEM,
+315,My Story,215,19,Malayalam,true,2025-07-07,,SYSTEM,
+320,Sabhayum Samvidhanavum,220,12,Malayalam,true,2025-07-07,,SYSTEM,
+325,Thrikarthika,225,14,Malayalam,true,2025-07-07,,SYSTEM,
+
