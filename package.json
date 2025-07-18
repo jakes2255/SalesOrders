@@ -1,7 +1,7 @@
 {
-  "name": "my-bookshop",
+  "name": "my-products",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
+  "description": "SAP CAP project for Products and Suppliers OData service.",
   "repository": "https://github.com/jakes2255/SalesOrders.git",
   "license": "UNLICENSED",
   "private": true,
@@ -19,7 +19,7 @@
   "cds": { "requires": {
    "db": {
       "kind": "sqlite",
-      "credentials": { "url": "db/my-bookshop.sqlite" }
+      "credentials": { "url": "db/my-products.sqlite" }
    }
 }},
   "fiori": {

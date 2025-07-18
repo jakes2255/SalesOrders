@@ -1,0 +1,11 @@
+ID,name,description,price,currency_code,category,inStock,stockQuantity,supplier_ID,createdAt,modifiedAt
+1,Wireless Bluetooth Headphones,High-quality wireless headphones with noise cancellation,299.99,USD,Electronics,true,150,1,2024-01-15T10:00:00Z,2024-01-15T10:00:00Z
+2,Smartphone Case,Protective case for latest smartphone models,24.99,USD,Accessories,true,500,2,2024-01-16T11:30:00Z,2024-01-16T11:30:00Z
+3,Laptop Stand,Adjustable aluminum laptop stand for ergonomic working,89.99,USD,Office Supplies,true,75,3,2024-01-17T09:15:00Z,2024-01-17T09:15:00Z
+4,USB-C Hub,Multi-port USB-C hub with HDMI and ethernet,79.99,USD,Electronics,true,200,4,2024-01-18T14:20:00Z,2024-01-18T14:20:00Z
+5,Wireless Mouse,Ergonomic wireless mouse with precision tracking,45.99,USD,Computer Peripherals,true,300,1,2024-01-19T16:45:00Z,2024-01-19T16:45:00Z
+6,Mechanical Keyboard,RGB backlit mechanical keyboard for gaming,159.99,USD,Computer Peripherals,true,120,2,2024-01-20T08:30:00Z,2024-01-20T08:30:00Z
+7,Portable Charger,20000mAh portable power bank with fast charging,39.99,USD,Electronics,true,250,3,2024-01-21T12:00:00Z,2024-01-21T12:00:00Z
+8,Webcam HD,1080p HD webcam with auto-focus,69.99,USD,Electronics,true,180,4,2024-01-22T15:30:00Z,2024-01-22T15:30:00Z
+9,Desk Organizer,Bamboo desk organizer with multiple compartments,34.99,USD,Office Supplies,true,100,5,2024-01-23T10:45:00Z,2024-01-23T10:45:00Z
+10,Bluetooth Speaker,Portable waterproof Bluetooth speaker,129.99,USD,Electronics,true,90,1,2024-01-24T13:15:00Z,2024-01-24T13:15:00Z
