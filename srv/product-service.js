@@ -52,7 +52,9 @@ module.exports = cds.service.impl(async function() {
                 req.error(400, `Product ${product.name} is out of stock`);
             }
             if (product.stockQuantity < quantity) {
-                req.error(400, `Insufficient stock. Available: ${product.stockQuantity}, Requested: ${quantity}`);
+                //req.error(400, `Insufficient stock. Available: ${product.stockQuantity}, Requested: ${quantity}`);
+                //use keys from the i18n.properties file
+                req.error(400, req._('product.insufficient_stock_error', product.stockQuantity, quantity));
             }
 
             // Warn about large orders
