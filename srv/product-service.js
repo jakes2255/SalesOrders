@@ -1,29 +1,27 @@
 const cds = require('@sap/cds');
 
-module.exports = cds.service.impl(async function() {
+module.exports = cds.service.impl(async function () {
     const { Products, Suppliers, ProductOrders } = this.entities;
 
     // Before creating a product, validate supplier exists
     this.before('CREATE', Products, async (req) => {
         const { supplier_ID, stockQuantity, price } = req.data;
-        
+
         if (supplier_ID) {
             const supplier = await SELECT.one.from(Suppliers).where({ ID: supplier_ID });
             if (!supplier) {
-                req.error(400, `Supplier with ID ${supplier_ID} does not exist`);
+                req.error(400, req._('supplier.not_found_error', supplier_ID));
             }
         } else {
-            req.warn('Product is being created without a supplier. Consider assigning a supplier for better inventory management.');
+            req.warn(req._('product.creation.no_supplier_warn'));
         }
 
-        // Warn about low initial stock
         if (stockQuantity && stockQuantity < 10) {
-            req.warn('Product is being created with very low initial stock quantity. Consider increasing stock levels.');
+            req.warn(req._('product.creation.low_stock_warn'));
         }
 
-        // Warn about missing price
         if (!price || price <= 0) {
-            req.warn('Product is being created without a valid price. This may affect inventory calculations.');
+            req.warn(req._('product.creation.no_price_warn'));
         }
     });
 
@@ -46,26 +44,22 @@ module.exports = cds.service.impl(async function() {
         if (product_ID && quantity) {
             const product = await SELECT.one.from(Products).where({ ID: product_ID });
             if (!product) {
-                req.error(400, `Product with ID ${product_ID} does not exist`);
+                req.error(400, req._('product.not_found_error', product_ID));
             }
             if (!product.inStock) {
-                req.error(400, `Product ${product.name} is out of stock`);
+                req.error(400, req._('product.out_of_stock_error', product.name));
             }
             if (product.stockQuantity < quantity) {
-                //req.error(400, `Insufficient stock. Available: ${product.stockQuantity}, Requested: ${quantity}`);
-                //use keys from the i18n.properties file
                 req.error(400, req._('product.insufficient_stock_error', product.stockQuantity, quantity));
             }
 
-            // Warn about large orders
             if (quantity > 100) {
-                req.warn('Large order quantity detected. Please verify this is intentional and sufficient stock will remain.');
+                req.warn(req._('order.large_quantity_warn'));
             }
 
-            // Warn if order will result in low stock
             const remainingStock = product.stockQuantity - quantity;
             if (remainingStock > 0 && remainingStock < 20) {
-                req.warn(`This order will result in low stock levels. Remaining stock after order: ${remainingStock}. Consider restocking soon.`);
+                req.warn(req._('order.low_stock_after_order_warn', remainingStock));
             }
         }
     });
@@ -86,15 +80,13 @@ module.exports = cds.service.impl(async function() {
             .where({ stockQuantity: { '<': threshold }, inStock: true })
             .orderBy('stockQuantity');
 
-        // Warn about critically low stock items
         const criticalItems = products.filter(p => p.stockQuantity < 10);
         if (criticalItems.length > 0) {
-            req.warn(`Found ${criticalItems.length} products with critically low stock (less than 10 units). Immediate restocking recommended.`);
+            req.warn(req._('product.critical_low_stock_warn', criticalItems.length));
         }
 
-        // Warn if no low stock products found but threshold is very low
         if (products.length === 0 && threshold < 20) {
-            req.warn('No low stock products found, but threshold is very low. Consider using a higher threshold for better inventory planning.');
+            req.warn(req._('product.no_low_stock_but_low_threshold_warn'));
         }
 
         return products;
@@ -104,14 +96,14 @@ module.exports = cds.service.impl(async function() {
     this.on('getSupplierStats', async (req) => {
         const supplierId = req.data.supplierId;
         const supplier = await SELECT.one.from(Suppliers).where({ ID: supplierId });
-        
+
         if (!supplier) {
-            req.error(404, `Supplier with ID ${supplierId} not found`);
+            req.error(404, req._('supplier.id_not_found_error', supplierId));
         }
 
         const products = await SELECT.from(Products).where({ supplier_ID: supplierId });
         const totalProducts = products.length;
-        const totalInventoryValue = products.reduce((sum, product) => 
+        const totalInventoryValue = products.reduce((sum, product) =>
             sum + (product.price * product.stockQuantity || 0), 0);
         const inStockProducts = products.filter(p => p.inStock).length;
 
