@@ -1,0 +1,12 @@
+using my.products as db from '../db/schema';
+
+
+/**
+ * Serves administrators managing everything
+ */
+service AdminService @(path: '/admin') {
+
+    entity Books   as projection on db.Products;
+    entity Authors as projection on db.Suppliers;
+
+}
