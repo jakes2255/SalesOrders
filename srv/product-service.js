@@ -28,13 +28,16 @@ module.exports = cds.service.impl(async function () {
     // After reading products, calculate total inventory value
     this.after('READ', Products, (products) => {
         if (Array.isArray(products)) {
-            products.forEach(product => {
-                if (product.price && product.stockQuantity) {
-                    product.inventoryValue = product.price * product.stockQuantity;
+            products.forEach(({ price, stockQuantity }, i) => {
+                if (price && stockQuantity) {
+                    products[i].inventoryValue = price * stockQuantity;
                 }
             });
-        } else if (products && products.price && products.stockQuantity) {
-            products.inventoryValue = products.price * products.stockQuantity;
+        } else if (products) {
+            const { price, stockQuantity } = products;
+            if (price && stockQuantity) {
+                products.inventoryValue = price * stockQuantity;
+            }
         }
     });
 
@@ -43,21 +46,25 @@ module.exports = cds.service.impl(async function () {
         const { product_ID, quantity } = req.data;
         if (product_ID && quantity) {
             const product = await SELECT.one.from(Products).where({ ID: product_ID });
+
             if (!product) {
                 req.error(400, req._('product.not_found_error', product_ID));
             }
-            if (!product.inStock) {
-                req.error(400, req._('product.out_of_stock_error', product.name));
+
+            const { inStock, stockQuantity, name } = product;
+
+            if (!inStock) {
+                req.error(400, req._('product.out_of_stock_error', name));
             }
-            if (product.stockQuantity < quantity) {
-                req.error(400, req._('product.insufficient_stock_error', product.stockQuantity, quantity));
+            if (stockQuantity < quantity) {
+                req.error(400, req._('product.insufficient_stock_error', stockQuantity, quantity));
             }
 
             if (quantity > 100) {
                 req.warn(req._('order.large_quantity_warn'));
             }
 
-            const remainingStock = product.stockQuantity - quantity;
+            const remainingStock = stockQuantity - quantity;
             if (remainingStock > 0 && remainingStock < 20) {
                 req.warn(req._('order.low_stock_after_order_warn', remainingStock));
             }
@@ -65,22 +72,23 @@ module.exports = cds.service.impl(async function () {
     });
 
     // After creating an order, update product stock
-    this.after('CREATE', ProductOrders, async (order, req) => {
-        if (order.product_ID && order.quantity) {
+    this.after('CREATE', ProductOrders, async ({ product_ID, quantity }) => {
+        if (product_ID && quantity) {
             await UPDATE(Products)
-                .set({ stockQuantity: { '-=': order.quantity } })
-                .where({ ID: order.product_ID });
+                .set({ stockQuantity: { '-=': quantity } })
+                .where({ ID: product_ID });
         }
     });
 
     // Custom action to get low stock products
     this.on('getLowStockProducts', async (req) => {
-        const threshold = req.data.threshold || 50;
+        const { threshold = 50 } = req.data;
+
         const products = await SELECT.from(Products)
             .where({ stockQuantity: { '<': threshold }, inStock: true })
             .orderBy('stockQuantity');
 
-        const criticalItems = products.filter(p => p.stockQuantity < 10);
+        const criticalItems = products.filter(({ stockQuantity }) => stockQuantity < 10);
         if (criticalItems.length > 0) {
             req.warn(req._('product.critical_low_stock_warn', criticalItems.length));
         }
@@ -94,7 +102,7 @@ module.exports = cds.service.impl(async function () {
 
     // Custom action to get supplier statistics
     this.on('getSupplierStats', async (req) => {
-        const supplierId = req.data.supplierId;
+        const { supplierId } = req.data;
         const supplier = await SELECT.one.from(Suppliers).where({ ID: supplierId });
 
         if (!supplier) {
@@ -103,9 +111,11 @@ module.exports = cds.service.impl(async function () {
 
         const products = await SELECT.from(Products).where({ supplier_ID: supplierId });
         const totalProducts = products.length;
-        const totalInventoryValue = products.reduce((sum, product) =>
-            sum + (product.price * product.stockQuantity || 0), 0);
-        const inStockProducts = products.filter(p => p.inStock).length;
+        const totalInventoryValue = products.reduce(
+            (sum, { price, stockQuantity }) => sum + (price * stockQuantity || 0), 
+            0
+        );
+        const inStockProducts = products.filter(({ inStock }) => inStock).length;
 
         return {
             supplier: supplier.name,
