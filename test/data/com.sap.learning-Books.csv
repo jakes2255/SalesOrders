@@ -1,17 +1,75 @@
 ID,title,genre,publCountry,stock,price_amount,price_currency,isHardcover
-a1911faf-074e-4ef8-b7aa-5adf0347d5b2, Romeo and Juliet, 1, GB, 45, 10.95, USD, false
-ea866e8a-f8b7-402c-9500-abd215738ba9, Much Ado About Nothing, 1, GB, 113, 17.99, USD, true
-0ec991dc-95c5-4d8f-91e6-f81a92744781, Faust, 1, DE, 523, 14.50, USD, false
-62e4f16c-bba0-4108-ad16-10111ebbb5e0, Harry Potter and the Philosopher’s Stone, 1, GB, 23, 24.50, USD, true
-641a20be-fd62-4b18-8305-9fba31a19e1d, Harry Potter and the Chamber of Secrets, 1, GB, 0, 21.30, USD, true
-18a658a1-caba-4c6c-ac4d-a1e156c8af48, Harry Potter and the Prisoner of Azkaban, 1, GB, 346, 19.49, USD, true
-30fa76fd-d6cc-4462-bcf9-d9a13f4482aa, Harry Potter and the Goblet of Fire, 1, GB, 78, 16.89, USD, true
-bb376d7a-af2e-4dd9-8915-230eff1f0429, Harry Potter and the Order of the Phoenix, 1, GB, 3, 17.89, USD, true
-27b72ab5-0ae7-444d-b439-48c24505a33c, Harry Potter and the Half-Blood Prince, 1, GB, 187, 20.00, USD, true
-ce2f1f2e-e902-4610-82fe-c7bbdefbf349, Harry Potter and the Deathly Hallows, 1, GB, 208, 9.99, USD, true
-0c4962b0-0e38-41fe-beec-a29d5baa785a, Roughing It, 1, US, 17, 11.20, USD, true
-2d78104a-6d8b-4475-8fe8-9bc063f0586c, The Adventures of Tom Sawyer, 1, US, 0, 23.49, USD, false
-0707662e-bfb1-4b22-ae04-12a482cc4b63, Life on the Mississippi, 1, US, 47, 19.99, USD, false
-77ee47b3-b6a9-4ba1-bdc2-2d50b6088e91, The Adventures of Huckleberry Finn, 1, US, 19, 7.50, USD, true
-a598198b-21cd-4b46-ab35-42dd3740e9fd, A Brief History of Time, 2, GB, 23, 32.67, USD, true
-31170e38-3b6c-41d9-8647-a19e8ab58359, The Universe in a Nutshell, 2, GB, 3, 29.55, USD, true
+a1911faf-074e-4ef8-b7aa-5adf0347d5b2,Romeo and Juliet,1,GB,45,10.95,USD,false
+ea866e8a-f8b7-402c-9500-abd215738ba9,Much Ado About Nothing,1,GB,113,17.99,USD,true
+0ec991dc-95c5-4d8f-91e6-f81a92744781,Faust,1,DE,523,14.50,USD,false
+62e4f16c-bba0-4108-ad16-10111ebbb5e0,Harry Potter and the Philosopher’s Stone,1,GB,23,24.50,USD,true
+641a20be-fd62-4b18-8305-9fba31a19e1d,Harry Potter and the Chamber of Secrets,1,GB,0,21.30,USD,true
+18a658a1-caba-4c6c-ac4d-a1e156c8af48,Harry Potter and the Prisoner of Azkaban,1,GB,346,19.49,USD,true
+30fa76fd-d6cc-4462-bcf9-d9a13f4482aa,Harry Potter and the Goblet of Fire,1,GB,78,16.89,USD,true
+bb376d7a-af2e-4dd9-8915-230eff1f0429,Harry Potter and the Order of the Phoenix,1,GB,3,17.89,USD,true
+27b72ab5-0ae7-444d-b439-48c24505a33c,Harry Potter and the Half-Blood Prince,1,GB,187,20.00,USD,true
+ce2f1f2e-e902-4610-82fe-c7bbdefbf349,Harry Potter and the Deathly Hallows,1,GB,208,9.99,USD,true
+0c4962b0-0e38-41fe-beec-a29d5baa785a,Roughing It,1,US,17,11.20,USD,true
+2d78104a-6d8b-4475-8fe8-9bc063f0586c,The Adventures of Tom Sawyer,1,US,0,23.49,USD,false
+0707662e-bfb1-4b22-ae04-12a482cc4b63,Life on the Mississippi,1,US,47,19.99,USD,false
+77ee47b3-b6a9-4ba1-bdc2-2d50b6088e91,The Adventures of Huckleberry Finn,1,US,19,7.50,USD,true
+a598198b-21cd-4b46-ab35-42dd3740e9fd,A Brief History of Time,2,GB,23,32.67,USD,true
+31170e38-3b6c-41d9-8647-a19e8ab58359,The Universe in a Nutshell,2,GB,3,29.55,USD,true
+e023e050-1d39-4a4c-85ea-67ac72b865dd,To Kill a Mockingbird,1,US,35,14.00,USD,false
+a46e7710-fbf1-42cf-a5d9-bb4de64b3cf6,1984,1,GB,55,18.75,USD,true
+b5e2a1d1-5bf5-4cbd-b5fb-c9f9a2418e26,The Great Gatsby,1,US,43,10.99,USD,false
+d0f0f0f0-0000-4f0f-a0f0-00000f0f0f0f,Moby Dick,1,US,12,25.00,USD,true
+988a7bd3-1d60-4005-8a2e-c0782c9e0f44,Pride and Prejudice,1,GB,30,21.00,USD,true
+7c5769ff-dcae-4f83-9633-60bb6c1ff40a,War and Peace,1,RU,5,29.99,USD,true
+792a6b5e-0d48-4f98-9c9d-5db6680e3d3f,The Catcher in the Rye,1,US,44,13.25,USD,false
+efa80a21-c64d-4e97-af8e-a33d6cf0bd90,The Hobbit,1,GB,76,22.95,USD,true
+67f09573-3ef3-4a4f-a6a6-c6d1e7905ddd,The Lord of the Rings,1,GB,58,32.00,USD,true
+1bea1a7c-6f46-49e9-8d58-76937731c3a6,The Chronicles of Narnia,1,GB,70,20.00,USD,true
+c2d0262d-14f9-4d7f-ad95-b3742b9b7bca,Great Expectations,1,GB,15,16.00,USD,false
+b9acc78b-d4f6-432f-b2f9-72e10081ed41,Les Misérables,1,FR,31,24.00,USD,true
+aa874b61-b8ef-48e2-b63f-3b8c2a7888fc,Ulysses,1,IE,2,27.50,USD,true
+4110ea9a-416b-4bbe-bec5-8c453adcd2cb,Don Quixote,1,ES,10,19.00,USD,true
+9a3b6703-9a42-4609-bf50-c101f3b89616,One Hundred Years of Solitude,1,CO,6,14.99,USD,false
+fa0fed64-49ae-4fbc-bddb-5375406794d6,The Brothers Karamazov,1,RU,8,22.50,USD,true
+2f6240d8-441d-4f28-b9d6-1b7beccf1911,Crime and Punishment,1,RU,7,19.95,USD,true
+6a082232-934c-4be3-b584-cb2f30f8c828,Alice's Adventures in Wonderland,1,GB,38,8.99,USD,false
+ae86553a-9647-4a12-aa8a-140d9e1cb6cc,The Picture of Dorian Gray,1,GB,28,13.99,USD,false
+5e2dce97-e94d-4e78-9727-f9d6f2356c82,Dracula,1,GB,17,11.99,USD,true
+0d7b5f7f-8d8b-4637-9e85-bd8f7f3f1d2e,Frankenstein,1,GB,22,9.50,USD,false
+d4dea5c2-c2d3-4db3-9bb6-8a68d9b40d49,The Divine Comedy,1,IT,9,18.75,USD,true
+0c9974c7-b37f-4abe-9fd7-04be9c79b109,The Odyssey,1,GR,12,16.50,USD,true
+1e8dbb9b-1a29-4e85-8d87-76252d25123d,The Iliad,1,GR,14,17.00,USD,true
+fb1b9bcf-5d3a-4f4f-8f09-02d97b583380,Gulliver's Travels,1,GB,18,15.25,USD,false
+e05a05ff-839e-4ce4-9e5e-513de747bb37,Heart of Darkness,1,GB,20,9.99,USD,false
+a3ffa465-7f3a-4d97-b541-8a29e89e2c21,Brave New World,1,GB,27,14.99,USD,true
+7b2c3a8c-58e2-4e7f-89a8-439dc3f4fee2,Fahrenheit 451,1,US,25,12.50,USD,true
+08cddd04-5804-4e30-bc91-20958d9c7767,Slaughterhouse-Five,1,US,11,10.25,USD,false
+d1d938ac-58b4-4ee3-b7b5-4fe9e7856301,Catch-22,1,US,33,18.99,USD,false
+ba871eea-0664-4e26-9bd4-435a0cc9eebc,The Grapes of Wrath,1,US,40,13.75,USD,true
+d3435db7-9bc9-4d7d-b948-b1b34d7a64c1,Middlesex,1,US,16,14.95,USD,false
+32d7de55-66c7-4b63-b3d4-a8b2b9e2f3ae,Infinite Jest,1,US,8,22.50,USD,true
+5bb1a933-5e0e-4196-813d-9a8f1e6e5d4f,Wuthering Heights,1,GB,21,15.00,USD,false
+6a1fc8d7-3c68-4469-b23d-b8a2e1e52a3b,Jane Eyre,1,GB,45,17.00,USD,true
+48f1b300-ebd0-4ab0-bf43-d49897539c08,Animal Farm,1,GB,60,8.95,USD,false
+1e5f6916-ecbd-4a9a-9661-cf204b3d8dc2,The Metamorphosis,1,DE,30,9.50,USD,false
+a2cfe941-7e0b-4b2d-8e07-e0196f3f85f5,Don Juan,1,ES,12,14.00,USD,true
+cae1b34e-5d49-4e5d-88e8-9adff97f3834,A Tale of Two Cities,1,GB,52,12.99,USD,true
+b7149c29-63a4-4c4a-92e0-2a9606bb7b2f,Les Fleurs du mal,1,FR,18,20.00,USD,false
+ef7a6b65-38d2-4e03-8739-0f3ff6a5ff64,The Count of Monte Cristo,1,FR,13,19.50,USD,true
+9f2b088b-8313-4d22-9e63-a2a69f297899,The Stranger,1,FR,21,11.99,USD,false
+d27e169a-a1e7-4db4-9d86-62d927e4b9c4,Murakami: Norwegian Wood,1,JP,40,13.25,USD,true
+34b7bc17-c6af-4c3e-ae57-19a4e53dda0c,Kafka on the Shore,1,JP,33,15.75,USD,true
+75b1b64c-2deb-4fbd-8d76-2efdb0d1342e,The Wind-Up Bird Chronicle,1,JP,29,17.50,USD,true
+bbf2d528-e374-4d3f-a6ca-0190a61f0fd4,The Name of the Rose,1,IT,12,12.99,USD,true
+3f2dd6be-ff11-4c64-9eae-11cb3348eada,The Shadow of the Wind,1,ES,16,14.50,USD,false
+5be77674-ed61-4dbe-8a41-6f0b665b9483,The Secret Garden,1,GB,28,8.95,USD,false
+d6c7a3ea-87aa-4d1d-9f1e-946d67e919aa,Little Women,1,US,22,9.99,USD,true
+294a1d0d-f32c-4dca-a2fd-31ee55b3b141,Uncle Tom's Cabin,1,US,19,10.50,USD,false
+8e1dc8d5-20a1-4c8d-a967-1dc618311eae,Gone with the Wind,1,US,15,14.95,USD,true
+0d385393-3dc8-4477-8e94-29179d14bf9a,The Old Man and the Sea,1,US,40,13.00,USD,false
+7abd6534-6de5-4e9f-9a62-3bce20ff0f28,Alice in Wonderland,1,GB,47,9.50,USD,false
+6a7a3e39-6a76-4c97-8d65-0a950c6a8423,Moby Dick,1,US,12,18.00,USD,true
+84fdf8dd-86b0-4d94-bc4a-11c3e48d0b5e,Crime and Punishment,1,RU,9,16.99,USD,false
+78ab4c63-7f39-4f25-a42a-b8cf1aae16f7,David Copperfield,1,GB,27,12.75,USD,true
+54dc8c31-b6c9-446c-bfaa-6ed8769884d8,Great Expectations,1,GB,22,11.50,USD,false
+b4e5f0fe-f4b3-4f39-af01-096e4bdcfd12,Wuthering Heights,1,GB,25,13.00,USD,true
