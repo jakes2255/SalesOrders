@@ -39,3 +39,13 @@ entity ProductOrders : managed {
   currency : Currency;
   status : String(20) default 'pending';
 }
+
+entity Books : managed, cuid {
+  title   : String(111);
+  author  : String(111);
+  stock   : Integer;
+  price   : Decimal(9,2);
+  currency: Currency;
+
+  category: Association to Categories;
+}
