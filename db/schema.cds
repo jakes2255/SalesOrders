@@ -49,3 +49,11 @@ entity Books : managed, cuid {
 
   category: Association to Categories;
 }
+
+entity Authors {
+  key ID   : Integer;
+  name     : String;
+  dateOfBirth : Date;
+  placeOfBirth: String;
+  books    : Association to many Books on books.author = $self;
+}
