@@ -56,4 +56,16 @@ entity Authors {
   dateOfBirth : Date;
   placeOfBirth: String;
   books    : Association to many Books on books.author = $self;
+}entity Orders : cuid {
+    customer      : String(111);
+    orderDate     : DateTime;
+    status        : String(30);
+    Items         : Composition of many OrderItems on Items.order = $self;
+}
+
+entity OrderItems : cuid {
+    product       : String(111);
+    quantity      : Integer;
+    price         : Decimal(9,2);
+    order         : Association to Orders;
 }
