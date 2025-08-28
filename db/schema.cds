@@ -42,7 +42,7 @@ entity ProductOrders : managed {
 
 entity Books : managed, cuid {
   title   : String(111);
-  author  : String(111);
+  author  : Association to Authors;
   stock   : Integer;
   price   : Decimal(9,2);
   currency: Currency;
@@ -55,8 +55,10 @@ entity Authors {
   name     : String;
   dateOfBirth : Date;
   placeOfBirth: String;
+  modifiedAt : Timestamp;
   books    : Association to many Books on books.author = $self;
-}entity Orders : cuid {
+}
+entity Orders : cuid {
     customer      : String(111);
     orderDate     : DateTime;
     status        : String(30);
@@ -68,4 +70,12 @@ entity OrderItems : cuid {
     quantity      : Integer;
     price         : Decimal(9,2);
     order         : Association to Orders;
+}
+
+annotate Books with {
+    modifiedAt @odata.etag
+}
+
+annotate Authors with {
+    modifiedAt @odata.etag
 }
