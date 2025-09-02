@@ -41,18 +41,21 @@ entity ProductOrders : managed {
 }
 
 entity Books : managed, cuid {
-  title   : String(111);
-  author  : Association to Authors;
-  stock   : Integer;
+  title   : localized String(255) @mandatory;
+  author  : Association to Authors @mandatory @assert.target;
+  stock   : NoOfBooks default 0;
+  isbn    : String(13);
   price   : Decimal(9,2);
   currency: Currency;
 
   category: Association to Categories;
 }
 
-entity Authors {
+type NoOfBooks: Integer;
+
+entity Authors: cuid,managed {
   key ID   : Integer;
-  name     : String;
+  name     : String(100) @mandatory;
   dateOfBirth : Date;
   placeOfBirth: String;
   modifiedAt : Timestamp;
