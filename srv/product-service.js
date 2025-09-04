@@ -125,4 +125,40 @@ module.exports = cds.service.impl(async function () {
             totalInventoryValue
         };
     });
+    /**
+   * 🔹 Custom Event: notifyStockUpdate
+   *  - Can be emitted when stock levels are updated (for async listeners / integrations).
+   */
+  this.on('notifyStockUpdate', async (req) => {
+    const { productId, newStock } = req.data;
+
+    const product = await SELECT.one.from(Products).where({ ID: productId });
+    if (!product) {
+      return req.error(404, req._('product.not_found_error', productId));
+    }
+
+    // Just an example of "event publishing" in CAP
+    this.emit('StockUpdated', { productId, oldStock: product.stockQuantity, newStock });
+
+    return {
+      message: `Stock update event emitted for ${product.name}`,
+      oldStock: product.stockQuantity,
+      newStock
+    };
+  });
+  /**
+   * 🔹 Custom Function: getInventoryValue
+   *  - Pure function: returns a number (sum of stock * price), no DB mutation.
+   */
+  this.on('getInventoryValue', async (req) => {
+    const { productId } = req.data;
+
+    const product = await SELECT.one.from(Products).where({ ID: productId });
+    if (!product) {
+      return req.error(404, req._('product.not_found_error', productId));
+    }
+
+    const value = (product.price || 0) * (product.stockQuantity || 0);
+    return { product: product.name, inventoryValue: value };
+  });
 });
