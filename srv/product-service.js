@@ -161,4 +161,49 @@ module.exports = cds.service.impl(async function () {
     const value = (product.price || 0) * (product.stockQuantity || 0);
     return { product: product.name, inventoryValue: value };
   });
+  // Custom Action: reduceStock
+this.on('reduceStock', async (req) => {
+  const { productId, quantity } = req.data;
+
+  if (!productId || !quantity) {
+    return req.error(400, 'Both productId and quantity are required');
+  }
+
+  // Fetch the product
+  const product = await SELECT.one.from(Products).where({ ID: productId });
+  if (!product) {
+    return req.error(404, req._('product.not_found_error', productId));
+  }
+
+  if (!product.inStock) {
+    return req.error(400, req._('product.out_of_stock_error', product.name));
+  }
+
+  if (product.stockQuantity < quantity) {
+    return req.error(
+      400,
+      req._('product.insufficient_stock_error', product.stockQuantity, quantity)
+    );
+  }
+
+  // Update stock
+  const newStock = product.stockQuantity - quantity;
+  await UPDATE(Products)
+    .set({ stockQuantity: newStock })
+    .where({ ID: productId });
+
+  // Optional: Emit stock update event for async integrations
+  this.emit('StockUpdated', {
+    productId,
+    oldStock: product.stockQuantity,
+    newStock
+  });
+
+  // Return response
+  return {
+    message: `Stock reduced for ${product.name}`,
+    oldStock: product.stockQuantity,
+    newStock
+  };
+});
 });
