@@ -1,4 +1,9 @@
 using my.products as ps from '../db/schema';
+using {
+  cuid,
+  managed
+} from '@sap/cds/common';
+
 
 service ProductService {
   entity Products @odata.draft.enabled @cds.redirection.target as projection on ps.Products;
