@@ -11,6 +11,12 @@ entity Suppliers {
   country: String(50);
   products : Association to many Products on products.supplier = $self;
 }
+//testing knowledge of CDS entities
+entity Patients {
+  key ID: Integer;
+  name  : String;
+  illness: String;
+}
 
 entity Products : managed {
   key ID : Integer;
