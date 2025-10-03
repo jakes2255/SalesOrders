@@ -20,6 +20,22 @@ class AdminService extends cds.ApplicationService {
       data.createdAt = new Date().toISOString();
     });
 
+    //Example: Handle a delete request for Books
+    this.on('DELETE', Books, async(req) => {
+      const {ID} = req.params; // extract the id from the request parameters via object destructuring;
+      console.log(`Deleting Book with id: ${ID}`);
+      //custom logic to handle the deletion
+      const result = await DELETE.from(Books).where({ID});
+
+      if(result == 0){
+        throw new Error('Book not found ');
+      }
+
+      console.log(`Book with id: ${ID} deleted successfully`);
+      //return a deletion successful mesage
+      return `Book with id: ${ID} delted successfully`;
+    })
+
     // Always call super.init() last
     await super.init();
   }
