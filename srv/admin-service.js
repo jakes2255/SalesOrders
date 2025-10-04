@@ -1,5 +1,7 @@
 // admin-service.js
 const cds = require('@sap/cds');
+const { message } = require('@sap/cds/lib/log/cds-error');
+const { UPDATE } = require('@sap/cds/lib/ql/cds-ql');
 
 class AdminService extends cds.ApplicationService {
   async init() {
@@ -35,6 +37,20 @@ class AdminService extends cds.ApplicationService {
       //return a deletion successful mesage
       return `Book with id: ${ID} delted successfully`;
     })
+
+    //Example Update operation
+    this.on('UPDATE', Books, async(req) =>{
+      const {ID} = req.params;
+      const {data} = req;
+      console.log(`Updating Book with ID: ${ID}`, data)
+      //Perform the update operation
+      const result = await UPDATE(Books).set(data).where({ID});
+      if(result == 0){
+        throw new Error(`Book with ID: ${ID} not found`);
+      }
+      console.log(`Book with ID: ${ID} updated successfully`);
+      return {message: `Book wit ID: ${ID} updated successfully`};
+    });
 
     // Always call super.init() last
     await super.init();
