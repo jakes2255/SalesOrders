@@ -6,13 +6,19 @@ const { UPDATE } = require('@sap/cds/lib/ql/cds-ql');
 class AdminService extends cds.ApplicationService {
   async init() {
     // Destructure from this.entities
-    const { Books, Authors } = this.entities;
+    const { Books, Authors, Employees } = this.entities;
 
     // Example: Handle a READ request for Books
     this.on('READ', Books, async (req) => {
       const { query } = req; // Destructure the query from request
       console.log('Reading books with query:', query);
       return await SELECT.from(Books);
+    });
+    //Handle Read request on Employees
+    this.on('READ', Employees, async(req) =>{
+      const { query } = req; //Destructure the query from request
+      console.log('Reading Employees with Query:', query);
+      return await SELECT.from(Employees);
     });
 
     // Example: Add custom logic for creating Authors
