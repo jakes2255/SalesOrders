@@ -67,6 +67,12 @@ entity Authors: cuid,managed {
   modifiedAt : Timestamp;
   books    : Association to many Books on books.author = $self;
 }
+
+entity Employees: cuid,managed {
+  name         : String(100) @mandatory;
+  dateOfBirth  : Date;
+  placeOfBirth : String;
+}
 entity Orders : cuid {
     customer      : String(111);
     orderDate     : DateTime;
