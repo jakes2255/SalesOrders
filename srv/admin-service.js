@@ -2,6 +2,7 @@
 const cds = require('@sap/cds');
 const { message } = require('@sap/cds/lib/log/cds-error');
 const { UPDATE } = require('@sap/cds/lib/ql/cds-ql');
+const SELECT = require('@sap/cds/lib/ql/SELECT');
 
 class AdminService extends cds.ApplicationService {
   async init() {
@@ -18,6 +19,12 @@ class AdminService extends cds.ApplicationService {
     this.on('READ', Employees, async(req) =>{
       const { query } = req; //Destructure the query from request
       console.log('Reading Employees with Query:', query);
+      return await SELECT.from(Employees);
+    });
+    //Handle Read request on Customers(will replace Authors by Customers later)
+    this.on('READ', Authors, async(req) => {
+      const {data} = req; //Destructing in action
+      console.log(`Readig authors: ${data.name}`);
       return await SELECT.from(Employees);
     });
 
