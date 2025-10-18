@@ -68,6 +68,11 @@ entity Authors: cuid,managed {
   books    : Association to many Books on books.author = $self;
 }
 
+entity Customers: cuid,managed {
+  name: String(100) @mandatory;
+  place: String(13);
+}
+
 entity Employees: cuid,managed {
   name         : String(100) @mandatory;
   dateOfBirth  : Date;

@@ -21,11 +21,11 @@ class AdminService extends cds.ApplicationService {
       console.log('Reading Employees with Query:', query);
       return await SELECT.from(Employees);
     });
-    //Handle Read request on Customers(will replace Authors by Customers later)
-    this.on('READ', Authors, async(req) => {
+    //Handle Read request on Customers
+    this.on('READ', Customers, async(req) => {
       const {data} = req; //Destructing in action
-      console.log(`Readig authors: ${data.name}`);
-      return await SELECT.from(Employees);
+      console.log(`Readig Customer: ${data.name}`);
+      return await SELECT.from(Customers);
     });
 
     // Example: Add custom logic for creating Authors
