@@ -7,7 +7,7 @@ const SELECT = require('@sap/cds/lib/ql/SELECT');
 class AdminService extends cds.ApplicationService {
   async init() {
     // Destructure from this.entities
-    const { Books, Authors, Employees } = this.entities;
+    const { Books, Authors, Employees, Friends } = this.entities;
 
     // Example: Handle a READ request for Books
     this.on('READ', Books, async (req) => {
@@ -26,6 +26,13 @@ class AdminService extends cds.ApplicationService {
       const {data} = req; //Destructing in action
       console.log(`Readig Customer: ${data.name}`);
       return await SELECT.from(Customers);
+    });
+
+    //Handle Read request on Friends
+    this.on('READ', Friends, async(req)=>{
+      const {data} = req; //Destructiong, now data obj.
+      console.log(`Reading Friends details: ${data.name}`);
+      return await SELECT.from(Friends);
     });
 
     // Example: Add custom logic for creating Authors
