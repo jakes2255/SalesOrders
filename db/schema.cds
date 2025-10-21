@@ -73,6 +73,12 @@ entity Customers: cuid,managed {
   place: String(13);
 }
 
+entity Friends: cuid,managed {
+  name: String(100) @mandatory;
+  place: String(13);
+  order: String;
+}
+
 entity Employees: cuid,managed {
   name         : String(100) @mandatory;
   dateOfBirth  : Date;
