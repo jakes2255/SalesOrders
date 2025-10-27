@@ -7,7 +7,7 @@ const SELECT = require('@sap/cds/lib/ql/SELECT');
 class AdminService extends cds.ApplicationService {
   async init() {
     // Destructure from this.entities
-    const { Books, Authors, Employees, Friends } = this.entities;
+    const { Books, Authors, Employees, Friends,Customers } = this.entities;
 
     // Example: Handle a READ request for Books
     this.on('READ', Books, async (req) => {

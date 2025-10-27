@@ -5,7 +5,7 @@ using my.products as db from '../db/schema';
  * Serves administrators managing everything
  */
 service AdminService @(path: '/admin') {
-    // NUI annotations here-only for Books entity
+    // UI annotations here-only for Books entity
     @UI: {
         headerInfo: {
         typeName: 'Book',
@@ -27,9 +27,19 @@ service AdminService @(path: '/admin') {
         ]
     }
     entity Books   as projection on db.Products;
-    // No UI annotations here, so default metadata applies
-    entity Authors as projection on db.Suppliers;
+    //UI Annotation for Employees entity
+    @UI: {
+        headerInfo : {
+            typeName: 'Employee',
+            typeNamePlural: 'Employees',
+            title: {value, name}
+        },
+        lineItem: [
+            {value: title, label: 'name'}
+        ]
+    }
     entity Employees as projection on db.Employees;
+    // No UI annotations here, so default metadata applies
     entity Customers as projection on db.Customers;
     entity Friends as projection on db.Friends;
 
