@@ -7,12 +7,14 @@ using my.products as db from '../db/schema';
 service AdminService @(path: '/admin') {
     // UI annotations here-only for Books entity
     @UI: {
+        //header section
         headerInfo: {
         typeName: 'Book',
         typeNamePlural: 'Books',
         title: { value: title },
         description: { value: author }
         },
+        //List Report
         lineItem: [
         { value: ID, label: 'Book ID' },
         { value: title, label: 'Title' },
@@ -20,11 +22,55 @@ service AdminService @(path: '/admin') {
         { value: price, label: 'Price' },
         { value: stock, label: 'In Stock' }
         ],
+        //Object page identifcation
         identification: [
         { value: title },
         { value: author },
         { value: description }
-        ]
+        ],
+        //Object page structure
+        facets                 : [
+            {
+                label          : 'General Information',
+                targetQualifier: 'GeneralInfo',
+                type           : #FieldGroupReference
+            },
+            {
+                label          : 'Stock Details',
+                targetQualifier: 'StockInfo',
+                type           : #FieldGroupReference
+            }
+        ],
+
+        fieldGroup #GeneralInfo: {data: [
+            {
+                value: title,
+                label: 'Title'
+            },
+            {
+                value: author,
+                label: 'Author'
+            },
+            {
+                value: price,
+                label: 'Price'
+            },
+            {
+                value: description,
+                label: 'Description'
+            }
+        ]},
+
+        fieldGroup #StockInfo  : {data: [
+            {
+                value: stock,
+                label: 'In Stock'
+            },
+            {
+                value: price,
+                label: 'Price (again for reference)'
+            }
+        ]}
     }
     entity Books   as projection on db.Products;
     //UI Annotation for Employees entity
