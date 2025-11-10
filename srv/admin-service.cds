@@ -22,6 +22,14 @@ service AdminService @(path: '/admin') {
         { value: price, label: 'Price' },
         { value: stock, label: 'In Stock' }
         ],
+        //Chart annotation
+        chart: {
+            title: 'Stock by Author',
+            description: 'Compare stock levels of books by author',
+            chartType: #Bar,                  // Other options: #Line, #Donut, #Column, #Pie
+            measures: [ stock ],              // Quantitative values
+            dimensions: [ author ]            // Categorical grouping
+        },
         //Object page identifcation
         identification: [
         { value: title },
