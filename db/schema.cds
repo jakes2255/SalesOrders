@@ -81,6 +81,7 @@ entity Friends: cuid,managed {
 
 entity Employees: cuid,managed {
   name         : String(100) @mandatory;
+  role         : String(50);
   dateOfBirth  : Date;
   placeOfBirth : String;
 }

@@ -72,6 +72,14 @@ class AdminService extends cds.ApplicationService {
       return {message: `Book wit ID: ${ID} updated successfully`};
     });
 
+    //Custom action implementation: prmote employee
+    this.on('promoteEmployee', async(req) =>{
+      const {ID} = req.data;
+      //update employee's role to next in Org.
+      await UPDATE(Employees.set({role: 'Senior'}).where({ID}));
+      return `Employee ${ID} is promoted Successfully!`;
+    })
+
     // Always call super.init() last
     await super.init();
   }

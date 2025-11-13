@@ -97,4 +97,7 @@ service AdminService @(path: '/admin') {
     entity Customers as projection on db.Customers;
     entity Friends as projection on db.Friends;
 
+    //custom action
+    action promoteEmployee(ID: UUID) returns String;
+
 }
