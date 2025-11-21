@@ -15,6 +15,10 @@ class AdminService extends cds.ApplicationService {
       console.log('Reading books with query:', query);
       return await SELECT.from(Books);
     });
+    //Add 'after' Hadler for to Enrich 'Books' with calculated fields
+    this.after('READ', Books, each => {
+      each.displayTitle = `${each.title} (${each.units} left)`;
+    });
     //Handle Read request on Employees
     this.on('READ', Employees, async(req) =>{
       const { query } = req; //Destructure the query from request
