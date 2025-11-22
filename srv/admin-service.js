@@ -60,7 +60,20 @@ class AdminService extends cds.ApplicationService {
       console.log(`Book with id: ${ID} deleted successfully`);
       //return a deletion successful mesage
       return `Book with id: ${ID} delted successfully`;
-    })
+    });
+
+    //Ad custom logic before Updating Book etity
+    this.before('UPDATE', Books, (req) =>{
+      const b = req.data;      
+      // Disallow changing the primary key (ID)
+        if ('ID' in b) {
+          return req.error(400, 'Changing the ID of a book is not allowed.');
+        }
+        // Optionally disallow changing ISBN (business rule)
+        if ('isbn' in b) {
+          return req.error(400, 'Changing the ISBN of a book is not allowed.');
+        }
+    });
 
     //Example Update operation
     this.on('UPDATE', Books, async(req) =>{
