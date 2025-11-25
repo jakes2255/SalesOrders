@@ -31,7 +31,22 @@ class AdminService extends cds.ApplicationService {
       console.log(`Readig Customer: ${data.name}`);
       return await SELECT.from(Customers);
     });
-
+    //Handle Update operation on Customer
+    this.on('UPDATE', Customers, async(req) => {
+      const { ID, name, place } = req; //Destructuring in action here
+      //validate mandatory field
+      if (!name) {
+        return req.reject(400, 'Name is mandatory for update!');
+      }
+      console.log(`Updating Customer with ID: ${ID}`, name)
+      //Perform the update operation
+      const result = await UPDATE('Customers').set({ name, place }).where({ ID });
+      if(result == 0){
+        throw new Error(`Customer with ID: ${ID} not found`);
+      }
+      console.log(`Customer with ID: ${ID} updated successfully`);
+      return {message: `Customer wit ID: ${ID} updated successfully`};
+    });
     //Handle Read request on Friends
     this.on('READ', Friends, async(req)=>{
       const {data} = req; //Destructiong, now data obj.
