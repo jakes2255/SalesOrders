@@ -42,7 +42,9 @@ class AdminService extends cds.ApplicationService {
       //Perform the update operation
       const result = await UPDATE('Customers').set({ name, place }).where({ ID });
       if(result == 0){
-        throw new Error(`Customer with ID: ${ID} not found`);
+        //throw new Error(`Customer with ID: ${ID} not found`);
+        // Throw a CAP-formatted error with HTTP 400 for invalid client input
+        throw new cds.error('Invalid data', { status: 400 });
       }
       console.log(`Customer with ID: ${ID} updated successfully`);
       return {message: `Customer wit ID: ${ID} updated successfully`};
