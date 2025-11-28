@@ -11,20 +11,27 @@ class AdminService extends cds.ApplicationService {
     // This handler supports search functionality by filtering on name or description
     this.on('READ', Books, async (req) => {
       const { query } = req;
-      const searchTerm = query.search?.val;
+      
+      // Extract search term from query.search array
+      let searchTerm = null;
+      if (query.search && query.search.length > 0) {
+        // search is an array, extract first search element
+        searchTerm = query.search[0]?.val || query.search[0];
+      }
       
       console.log('Reading books (category=Books) with query:', query);
-      console.log('Search term:', searchTerm);
+      console.log('Search term extracted:', searchTerm);
       
       let q = SELECT.from(Books);
       
       // If search term provided, add filter for name or description containing the search term
-      if (searchTerm) {
+      if (searchTerm && searchTerm.trim()) {
+        const term = `%${searchTerm.trim()}%`;
         q = q.where(book => 
-          book.name.like(`%${searchTerm}%`)
-          .or(book.description.like(`%${searchTerm}%`))
+          book.name.like(term)
+          .or(book.description.like(term))
         );
-        console.log(`Filtering books with search term: "${searchTerm}"`);
+        console.log(`Filtering books with search term: "${searchTerm.trim()}"`);
       }
       
       return await cds.run(q);
