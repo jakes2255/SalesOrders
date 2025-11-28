@@ -26,9 +26,9 @@ service AdminService @(path: '/admin') {
         chart: {
             title: 'Stock by Category',
             description: 'Compare stock levels of books by category',
-            chartType: #Bar,                  // Other options: #Line, #Donut, #Column, #Pie
-            measures: [ stockQuantity ],      // Quantitative values
-            dimensions: [ category ]          // Categorical grouping
+            chartType: #Bar,
+            measures: [ stockQuantity ],
+            dimensions: [ category ]
         },
         //Object page identification
         identification: [
@@ -37,50 +37,31 @@ service AdminService @(path: '/admin') {
         { value: description }
         ],
         //Object page structure
-        facets                 : [
+        facets: [
             {
-                label          : 'General Information',
+                label: 'General Information',
                 targetQualifier: 'GeneralInfo',
-                type           : #FieldGroupReference
+                type: #FieldGroupReference
             },
             {
-                label          : 'Stock Details',
+                label: 'Stock Details',
                 targetQualifier: 'StockInfo',
-                type           : #FieldGroupReference
+                type: #FieldGroupReference
             }
         ],
-
         fieldGroup #GeneralInfo: {data: [
-            {
-                value: name,
-                label: 'Title'
-            },
-            {
-                value: category,
-                label: 'Category'
-            },
-            {
-                value: price,
-                label: 'Price'
-            },
-            {
-                value: description,
-                label: 'Description'
-            }
+            { value: name, label: 'Title' },
+            { value: category, label: 'Category' },
+            { value: price, label: 'Price' },
+            { value: description, label: 'Description' }
         ]},
-
-        fieldGroup #StockInfo  : {data: [
-            {
-                value: stockQuantity,
-                label: 'In Stock'
-            },
-            {
-                value: price,
-                label: 'Price (again for reference)'
-            }
+        fieldGroup #StockInfo: {data: [
+            { value: stockQuantity, label: 'In Stock' },
+            { value: price, label: 'Price (again for reference)' }
         ]}
     }
-    entity Books   as projection on db.Products where category = 'Books';
+    @Search.defaultSearchElement: true
+    entity Books as projection on db.Products where category = 'Books';
     //UI Annotation for Employees entity
     @UI: {
         headerInfo : {
