@@ -8,10 +8,26 @@ class AdminService extends cds.ApplicationService {
     const { Books, Employees, Friends, Customers } = this.entities;
 
     // Example: Handle a READ request for Books (filtered to category = 'Books')
+    // This handler supports search functionality by filtering on name or description
     this.on('READ', Books, async (req) => {
-      const { query } = req; // Destructure the query from request
+      const { query } = req;
+      const searchTerm = query.search?.val;
+      
       console.log('Reading books (category=Books) with query:', query);
-      return await cds.run(SELECT.from(Books));
+      console.log('Search term:', searchTerm);
+      
+      let q = SELECT.from(Books);
+      
+      // If search term provided, add filter for name or description containing the search term
+      if (searchTerm) {
+        q = q.where(book => 
+          book.name.like(`%${searchTerm}%`)
+          .or(book.description.like(`%${searchTerm}%`))
+        );
+        console.log(`Filtering books with search term: "${searchTerm}"`);
+      }
+      
+      return await cds.run(q);
     });
     //Add 'after' Hadler for to Enrich 'Books' with calculated fields
     this.after('READ', Books, each => {
