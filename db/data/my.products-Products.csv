@@ -9,3 +9,13 @@ ID,name,description,price,currency_code,category,inStock,stockQuantity,supplier_
 8,Webcam HD,1080p HD webcam with auto-focus,69.99,USD,Electronics,true,180,4,2024-01-22T15:30:00Z,2024-01-22T15:30:00Z
 9,Desk Organizer,Bamboo desk organizer with multiple compartments,34.99,USD,Office Supplies,true,100,5,2024-01-23T10:45:00Z,2024-01-23T10:45:00Z
 10,Bluetooth Speaker,Portable waterproof Bluetooth speaker,129.99,USD,Electronics,true,90,1,2024-01-24T13:15:00Z,2024-01-24T13:15:00Z
+11,The Great Gatsby,A classic American novel by F. Scott Fitzgerald about the Jazz Age,14.99,USD,Books,true,200,1,2024-02-01T09:00:00Z,2024-02-01T09:00:00Z
+12,To Kill a Mockingbird,Harper Lee's timeless story of racial injustice in the Deep South,13.99,USD,Books,true,180,2,2024-02-01T09:30:00Z,2024-02-01T09:30:00Z
+13,1984,George Orwell's dystopian novel about totalitarianism and surveillance,12.99,USD,Books,true,150,3,2024-02-01T10:00:00Z,2024-02-01T10:00:00Z
+14,Pride and Prejudice,Jane Austen's romantic novel of manners and social satire,11.99,USD,Books,true,220,4,2024-02-01T10:30:00Z,2024-02-01T10:30:00Z
+15,The Catcher in the Rye,J.D. Salinger's coming-of-age novel about teenage alienation,13.49,USD,Books,true,120,5,2024-02-01T11:00:00Z,2024-02-01T11:00:00Z
+16,Brave New World,Aldous Huxley's cautionary tale of a futuristic society,14.49,USD,Books,true,160,1,2024-02-01T11:30:00Z,2024-02-01T11:30:00Z
+17,The Hobbit,J.R.R. Tolkien's fantasy adventure with Bilbo Baggins,15.99,USD,Books,true,190,2,2024-02-01T12:00:00Z,2024-02-01T12:00:00Z
+18,The Lord of the Rings Trilogy,Tolkien's epic fantasy saga of good versus evil,45.99,USD,Books,true,80,3,2024-02-01T12:30:00Z,2024-02-01T12:30:00Z
+19,Dune,Frank Herbert's sci-fi masterpiece about politics and power,16.99,USD,Books,true,140,4,2024-02-01T13:00:00Z,2024-02-01T13:00:00Z
+20,The Chronicles of Narnia,C.S. Lewis's fantasy series set in a magical world,39.99,USD,Books,true,100,5,2024-02-01T13:30:00Z,2024-02-01T13:30:00Z
