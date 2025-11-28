@@ -80,7 +80,7 @@ service AdminService @(path: '/admin') {
             }
         ]}
     }
-    entity Books   as projection on db.Products;
+    entity Books   as projection on db.Products where category = 'Books';
     //UI Annotation for Employees entity
     @UI: {
         headerInfo : {

@@ -7,10 +7,10 @@ class AdminService extends cds.ApplicationService {
     // Destructure from this.entities
     const { Books, Employees, Friends, Customers } = this.entities;
 
-    // Example: Handle a READ request for Books
+    // Example: Handle a READ request for Books (filtered to category = 'Books')
     this.on('READ', Books, async (req) => {
       const { query } = req; // Destructure the query from request
-      console.log('Reading books with query:', query);
+      console.log('Reading books (category=Books) with query:', query);
       return await cds.run(SELECT.from(Books));
     });
     //Add 'after' Hadler for to Enrich 'Books' with calculated fields
