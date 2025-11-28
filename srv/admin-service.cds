@@ -11,29 +11,29 @@ service AdminService @(path: '/admin') {
         headerInfo: {
         typeName: 'Book',
         typeNamePlural: 'Books',
-        title: { value: title },
-        description: { value: author }
+        title: { value: name },
+        description: { value: category }
         },
         //List Report
         lineItem: [
         { value: ID, label: 'Book ID' },
-        { value: title, label: 'Title' },
-        { value: author, label: 'Author' },
+        { value: name, label: 'Title' },
+        { value: category, label: 'Category' },
         { value: price, label: 'Price' },
-        { value: stock, label: 'In Stock' }
+        { value: stockQuantity, label: 'In Stock' }
         ],
         //Chart annotation
         chart: {
-            title: 'Stock by Author',
-            description: 'Compare stock levels of books by author',
+            title: 'Stock by Category',
+            description: 'Compare stock levels of books by category',
             chartType: #Bar,                  // Other options: #Line, #Donut, #Column, #Pie
-            measures: [ stock ],              // Quantitative values
-            dimensions: [ author ]            // Categorical grouping
+            measures: [ stockQuantity ],      // Quantitative values
+            dimensions: [ category ]          // Categorical grouping
         },
-        //Object page identifcation
+        //Object page identification
         identification: [
-        { value: title },
-        { value: author },
+        { value: name },
+        { value: category },
         { value: description }
         ],
         //Object page structure
@@ -52,12 +52,12 @@ service AdminService @(path: '/admin') {
 
         fieldGroup #GeneralInfo: {data: [
             {
-                value: title,
+                value: name,
                 label: 'Title'
             },
             {
-                value: author,
-                label: 'Author'
+                value: category,
+                label: 'Category'
             },
             {
                 value: price,
@@ -71,7 +71,7 @@ service AdminService @(path: '/admin') {
 
         fieldGroup #StockInfo  : {data: [
             {
-                value: stock,
+                value: stockQuantity,
                 label: 'In Stock'
             },
             {
@@ -86,10 +86,10 @@ service AdminService @(path: '/admin') {
         headerInfo : {
             typeName: 'Employee',
             typeNamePlural: 'Employees',
-            title: {value, name}
+            title: {value: name}
         },
         lineItem: [
-            {value: title, label: 'name'}
+            {value: name, label: 'Name'}
         ]
     }
     entity Employees as projection on db.Employees;
