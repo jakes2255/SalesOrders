@@ -20,7 +20,11 @@
         "uri": "/admin/",
         "type": "OData",
         "settings": {
-          "annotations": [],
+          "annotations": [
+            {
+              "uri": "annotations/Annotations.xml"
+            }
+          ],
           "odataVersion": "4.0"
         }
       }

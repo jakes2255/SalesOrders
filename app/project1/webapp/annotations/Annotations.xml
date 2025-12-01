@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/odata-vocabularies-annotation-v1.xml">
+    <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core" />
+    <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
+    <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation" />
+    <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+  </edmx:Reference>
+
+  <edmx:DataServices>
+    <Annotations Target="AdminService.Books">
+      <Annotation Term="UI.LineItem">
+        <Collection>
+          <Record Type="UI.DataField">
+            <PropertyValue Property="Value" Path="name" />
+          </Record>
+          <Record Type="UI.DataField">
+            <PropertyValue Property="Value" Path="category" />
+          </Record>
+          <Record Type="UI.DataField">
+            <PropertyValue Property="Value" Path="price" />
+          </Record>
+          <Record Type="UI.DataField">
+            <PropertyValue Property="Value" Path="stockQuantity" />
+          </Record>
+        </Collection>
+      </Annotation>
+
+      <Annotation Term="UI.SelectionFields">
+        <Collection>
+          <PropertyPath>name</PropertyPath>
+          <PropertyPath>category</PropertyPath>
+        </Collection>
+      </Annotation>
+
+      <Annotation Term="UI.HeaderInfo">
+        <Record>
+          <PropertyValue Property="Title">
+            <Collection>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="name" />
+              </Record>
+            </Collection>
+          </PropertyValue>
+        </Record>
+      </Annotation>
+    </Annotations>
+  </edmx:DataServices>
+</edmx:Edmx>
