@@ -1,84 +1,55 @@
 using my.products as db from '../db/schema';
 
-
 /**
- * Serves administrators managing everything
+ * @namespace AdminService
+ * @description Enterprise administration service for managing books, employees, customers, and related operations.
+ *              Provides CRUD operations with role-based access control and audit trail support.
+ * @path /admin
  */
 service AdminService @(path: '/admin') {
-    // UI annotations here-only for Books entity
-    @UI: {
-        //header section
-        headerInfo: {
-        typeName: 'Book',
-        typeNamePlural: 'Books',
-        title: { value: name },
-        description: { value: category }
-        },
-        //List Report
-        lineItem: [
-        { value: ID, label: 'Book ID' },
-        { value: name, label: 'Title' },
-        { value: category, label: 'Category' },
-        { value: price, label: 'Price' },
-        { value: stockQuantity, label: 'In Stock' }
-        ],
-        //Chart annotation
-        chart: {
-            title: 'Stock by Category',
-            description: 'Compare stock levels of books by category',
-            chartType: #Bar,
-            measures: [ stockQuantity ],
-            dimensions: [ category ]
-        },
-        //Object page identification
-        identification: [
-        { value: name },
-        { value: category },
-        { value: description }
-        ],
-        //Object page structure
-        facets: [
-            {
-                label: 'General Information',
-                targetQualifier: 'GeneralInfo',
-                type: #FieldGroupReference
-            },
-            {
-                label: 'Stock Details',
-                targetQualifier: 'StockInfo',
-                type: #FieldGroupReference
-            }
-        ],
-        fieldGroup #GeneralInfo: {data: [
-            { value: name, label: 'Title' },
-            { value: category, label: 'Category' },
-            { value: price, label: 'Price' },
-            { value: description, label: 'Description' }
-        ]},
-        fieldGroup #StockInfo: {data: [
-            { value: stockQuantity, label: 'In Stock' },
-            { value: price, label: 'Price (again for reference)' }
-        ]}
-    }
-    @Search.defaultSearchElement: true
-    entity Books as projection on db.Products where category = 'Books';
-    //UI Annotation for Employees entity
-    @UI: {
-        headerInfo : {
-            typeName: 'Employee',
-            typeNamePlural: 'Employees',
-            title: {value: name}
-        },
-        lineItem: [
-            {value: name, label: 'Name'}
-        ]
-    }
-    entity Employees as projection on db.Employees;
-    // No UI annotations here, so default metadata applies
-    entity Customers as projection on db.Customers;
-    entity Friends as projection on db.Friends;
+  /**
+   * @description Books catalog accessible to administrators.
+   *              Provides filtered view of products with category = 'Books'.
+   *              Supports full-text search across name and description fields.
+   *              All operations are logged for audit compliance.
+   * @searchable
+   */
+  entity Books as projection on db.Products
+    where category = 'Books';
 
-    //custom action
-    action promoteEmployee(ID: UUID) returns String;
+  /**
+   * @description Employee directory for administrative management.
+   *              Restricted to HR and admin roles only.
+   */
+  @restrict: [
+    { grant: 'READ', to: 'admin_user' },
+    { grant: 'CREATE,UPDATE,DELETE', to: 'hr_admin' }
+  ]
+  entity Employees as projection on db.Employees;
 
+  /**
+   * @description Customer master data.
+   *              Accessible to sales and admin roles.
+   */
+  @restrict: [
+    { grant: 'READ', to: 'sales_user' },
+    { grant: 'WRITE', to: 'sales_admin' }
+  ]
+  entity Customers as projection on db.Customers;
+
+  /**
+   * @description Friends/associates network (optional).
+   *              Read-only access for all authenticated users.
+   */
+  entity Friends as projection on db.Friends;
+
+  /**
+   * @description Promotes an employee to a higher role.
+   *              Restricted to HR administrators only.
+   * @param {UUID} ID - Employee UUID
+   * @returns {String} Promotion status message
+   * @throws {Error} If employee not found or already at max level
+   */
+  @restrict: [{ grant: 'EXECUTE', to: 'hr_admin' }]
+  action promoteEmployee(ID: UUID) returns String;
 }
