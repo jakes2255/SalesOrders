@@ -64,19 +64,19 @@ annotate AdminService.Books with @(
       id: 'GeneralInfoFacet',
       label: {i18n: 'facetGeneralInfo'},
       type: #FieldGroupReference,
-      target: '@UI.fieldGroup#GeneralInfo'
+      target: @UI.fieldGroup#GeneralInfo
     },
     {
       id: 'StockDetailsFacet',
       label: {i18n: 'facetStockDetails'},
       type: #FieldGroupReference,
-      target: '@UI.fieldGroup#StockInfo'
+      target: @UI.fieldGroup#StockInfo
     },
     {
       id: 'AnalyticsFacet',
       label: {i18n: 'facetAnalytics'},
       type: #ChartReference,
-      target: '@UI.chart'
+      target: @UI.chart
     }
   ],
 
