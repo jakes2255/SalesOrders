@@ -47,7 +47,7 @@ annotate AdminService.Books with @(
       value: stockQuantity,
       label: {i18n: 'fieldStock'},
       importance: #Medium,
-      criticality: stockQuantity < 50 ? #Negative : (stockQuantity < 100 ? #Warning : #Positive)
+      criticality: #Positive
     }
   ],
 
@@ -64,19 +64,19 @@ annotate AdminService.Books with @(
       id: 'GeneralInfoFacet',
       label: {i18n: 'facetGeneralInfo'},
       type: #FieldGroupReference,
-      target: @UI.fieldGroup#GeneralInfo
+      target: '#GeneralInfo'
     },
     {
       id: 'StockDetailsFacet',
       label: {i18n: 'facetStockDetails'},
       type: #FieldGroupReference,
-      target: @UI.fieldGroup#StockInfo
+      target: '#StockInfo'
     },
     {
       id: 'AnalyticsFacet',
       label: {i18n: 'facetAnalytics'},
       type: #ChartReference,
-      target: @UI.chart
+      target: 'Analytics'
     }
   ],
 
@@ -110,66 +110,45 @@ annotate AdminService.Books with @(
     dimensions: [category]
   },
 
-  // Selection Fields for filter bar in ListReport
+  // Sorting (newest books first)
   UI.selectionFields: [
     name,
     category,
     price,
     stockQuantity
-  ],
-
-  // Search Configuration
-  Search.defaultSearchElement: true,
-  Search.fuzziness: 0.8,
-
-  // Sorting (newest books first)
-  Common.SortOrder: [
-    {by: createdAt, direction: #Descending}
   ]
 ) {
   // Field-level annotations
   name @(
-    Common.Label: {i18n: 'fieldTitle'},
-    Common.QuickInfo: {i18n: 'infoTitle'},
-    UI.HyperLink: null,
-    Measures.ISOCurrency: currency_code
+    Common.Label: 'Title',
+    Common.QuickInfo: 'The title or name of the book',
+    UI.HyperLink: null
   );
 
   category @(
-    Common.Label: {i18n: 'fieldCategory'},
-    Common.ValueList: {
-      Label: {i18n: 'valueListCategories'},
-      CollectionPath: 'Categories',
-      Parameters: [
-        {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: category, ValueListProperty: 'code'},
-        {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'description'}
-      ]
-    }
+    Common.Label: 'Category'
   );
 
   price @(
-    Common.Label: {i18n: 'fieldPrice'},
-    Measures.ISOCurrency: currency_code,
-    Common.SemanticObject: 'Product'
+    Common.Label: 'Price (USD)'
   );
 
   stockQuantity @(
-    Common.Label: {i18n: 'fieldStock'},
-    Common.Text: displayTitle
+    Common.Label: 'In Stock'
   );
 
   description @(
-    Common.Label: {i18n: 'fieldDescription'},
+    Common.Label: 'Description',
     UI.MultiLineText: true
   );
 
   createdAt @(
-    Common.Label: {i18n: 'fieldCreatedAt'},
+    Common.Label: 'Created On',
     UI.HiddenFilter: true
   );
 
   modifiedAt @(
-    Common.Label: {i18n: 'fieldModifiedAt'},
+    Common.Label: 'Last Modified',
     UI.HiddenFilter: true
   );
 };
@@ -194,7 +173,7 @@ annotate AdminService.Employees with @(
   ]
 ) {
   name @(
-    Common.Label: {i18n: 'fieldName'}
+    Common.Label: 'Name'
   );
 };
 
