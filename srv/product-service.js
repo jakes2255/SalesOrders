@@ -3,6 +3,13 @@ const cds = require('@sap/cds');
 module.exports = cds.service.impl(async function () {
     const { Products, Suppliers, ProductOrders } = this.entities;
 
+    // Simple, beginner-friendly READ handler for `Suppliers`.
+    // It forwards the incoming SELECT query to the database so
+    // the usual filters, $select and $expand work as expected.
+    this.on('READ', Suppliers, async (req) => {
+        return await cds.tx(req).run(req.query);
+    });
+
     // Before creating a product, validate supplier exists
     this.before('CREATE', Products, async (req) => {
         const { supplier_ID, stockQuantity, price } = req.data;
