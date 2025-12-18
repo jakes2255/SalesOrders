@@ -14,15 +14,23 @@
         <Collection>
           <Record Type="UI.DataField">
             <PropertyValue Property="Value" Path="name" />
+            <PropertyValue Property="Label" String="Book Title" />
+            <PropertyValue Property="Importance" EnumMember="UI.ImportanceType/High" />
           </Record>
           <Record Type="UI.DataField">
             <PropertyValue Property="Value" Path="category" />
+            <PropertyValue Property="Label" String="Category" />
+            <PropertyValue Property="Importance" EnumMember="UI.ImportanceType/High" />
           </Record>
           <Record Type="UI.DataField">
             <PropertyValue Property="Value" Path="price" />
+            <PropertyValue Property="Label" String="Price" />
+            <PropertyValue Property="Importance" EnumMember="UI.ImportanceType/Medium" />
           </Record>
-          <Record Type="UI.DataField">
-            <PropertyValue Property="Value" Path="stockQuantity" />
+          <Record Type="UI.DataFieldForAnnotation">
+            <PropertyValue Property="Target" AnnotationPath="stockQuantity@com.sap.vocabularies.Common.v1.Text" />
+            <PropertyValue Property="Label" String="Stock Status" />
+            <PropertyValue Property="Importance" EnumMember="UI.ImportanceType/High" />
           </Record>
         </Collection>
       </Annotation>
@@ -31,11 +39,14 @@
         <Collection>
           <PropertyPath>name</PropertyPath>
           <PropertyPath>category</PropertyPath>
+          <PropertyPath>price</PropertyPath>
         </Collection>
       </Annotation>
 
       <Annotation Term="UI.HeaderInfo">
         <Record>
+          <PropertyValue Property="TypeName" String="Book" />
+          <PropertyValue Property="TypeNamePlural" String="Books" />
           <PropertyValue Property="Title">
             <Collection>
               <Record Type="UI.DataField">
@@ -43,7 +54,57 @@
               </Record>
             </Collection>
           </PropertyValue>
+          <PropertyValue Property="Description">
+            <Collection>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="category" />
+              </Record>
+            </Collection>
+          </PropertyValue>
+          <PropertyValue Property="ImageUrl" String="" />
         </Record>
+      </Annotation>
+
+      <Annotation Term="UI.FieldGroup" Qualifier="BookDetails">
+        <Record>
+          <PropertyValue Property="Data">
+            <Collection>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="name" />
+                <PropertyValue Property="Label" String="Title" />
+              </Record>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="category" />
+                <PropertyValue Property="Label" String="Category" />
+              </Record>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="price" />
+                <PropertyValue Property="Label" String="Price" />
+              </Record>
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="stockQuantity" />
+                <PropertyValue Property="Label" String="Stock Quantity" />
+              </Record>
+            </Collection>
+          </PropertyValue>
+        </Record>
+      </Annotation>
+
+      <Annotation Term="UI.Facets">
+        <Collection>
+          <Record Type="UI.CollectionFacet">
+            <PropertyValue Property="Title" String="Book Information" />
+            <PropertyValue Property="ID" String="BookInfoFacet" />
+            <PropertyValue Property="Facets">
+              <Collection>
+                <Record Type="UI.ReferenceFacet">
+                  <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#BookDetails" />
+                  <PropertyValue Property="Label" String="Details" />
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Collection>
       </Annotation>
     </Annotations>
   </edmx:DataServices>
