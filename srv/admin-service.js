@@ -71,11 +71,17 @@ class AdminService extends cds.ApplicationService {
       return {message: `Customer with ID: ${ID} updated successfully`};
     });
     //Handle Read request on Friends
-    this.on('READ', Friends, async(req)=>{
+    /*this.on('READ', Friends, async(req)=>{
       const { query } = req;
       console.log('Reading Friends with query:', query);
       return await cds.run(SELECT.from(Friends));
-    });
+    });*/
+    //ultra-clean JS style
+    /*
+    In CAP, we usually delegate READ operations to req.query so that filters, paging, 
+    and authorizations are handled consistently by the framework
+    */
+    this.on('READ', Friends, ({ query }) => cds.run(query));
 
     // (removed) create-handler for Authors — Authors is not exposed in this service
 
