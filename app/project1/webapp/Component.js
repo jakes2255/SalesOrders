@@ -11,7 +11,7 @@ sap.ui.define(
             init: function () {
             AppComponent.prototype.init.apply(this, arguments);
 
-            // Example: App-level view model (allowed)
+            // Example: App-level view model
             const oAppModel = new JSONModel({
                 busy: false
             });
