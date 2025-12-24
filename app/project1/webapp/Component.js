@@ -1,11 +1,21 @@
 sap.ui.define(
     ["sap/fe/core/AppComponent"],
-    function (Component) {
+    function (AppComponent) {
         "use strict";
 
-        return Component.extend("project1.Component", {
+        return AppComponent.extend("project1.Component", {
             metadata: {
                 manifest: "json"
+            },
+
+            init: function () {
+            AppComponent.prototype.init.apply(this, arguments);
+
+            // Example: App-level view model (allowed)
+            const oAppModel = new JSONModel({
+                busy: false
+            });
+            this.setModel(oAppModel, "app");
             }
         });
     }
