@@ -42,10 +42,25 @@ class AdminService extends cds.ApplicationService {
       each.displayTitle = `${each.name || each.title} (${each.stockQuantity ?? 0} left)`;
     });
     //Handle Read request on Employees
-    this.on('READ', Employees, async(req) =>{
+    /*this.on('READ', Employees, async(req) =>{
       const { query } = req; //Destructure the query from request
       console.log('Reading Employees with Query:', query);
       return await cds.run(SELECT.from(Employees));
+    });*/
+    //Better Handling of 'READ' for Employees using ultra-clean JS style
+    this.on('READ', Employees, async (req) => {
+      const { SELECT } = req.query ?? {};
+
+      // Optional: lightweight debug logging (avoid console.log in productive systems)
+      req.info?.('READ Employees request received');
+
+      // Respect incoming query (filters, $select, $top, etc.)
+      return cds.run({
+        SELECT: {
+          ...SELECT,
+          from: { ref: ['Employees'] }
+        }
+      });
     });
     //Handle Read request on Customers
     this.on('READ', Customers, async(req) => {
