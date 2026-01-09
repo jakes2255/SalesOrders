@@ -152,6 +152,16 @@ class AdminService extends cds.ApplicationService {
       return { message: `Employee ${ID} is promoted successfully` };
     })
 
+    // Action: getEmployeeMessage (bound to Employees)
+    // Returns a simple readiness message; accepts optional Employee ID in action payload
+    this.on('getEmployeeMessage', Employees, async (req) => {
+      const { ID } = req.data || {};
+      if (ID) {
+        return { message: `Employee ${ID} is ready for CAP` };
+      }
+      return { message: 'Employees service is ready for CAP' };
+    });
+
     // Always call super.init() last
     await super.init();
   }
