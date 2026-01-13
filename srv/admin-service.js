@@ -143,6 +143,47 @@ class AdminService extends cds.ApplicationService {
       return {message: `Book with ID: ${ID} updated successfully`};
     });
 
+    //Custom action implementation: archive book
+    this.on('archiveBook', async(req) => {
+      const { ID, reason } = req.data || {};
+      
+      // Validate required parameters
+      if (!ID) return req.reject(400, 'Book ID is required');
+      if (!reason) return req.reject(400, 'Archival reason is required');
+      
+      // Check if book exists
+      const book = await cds.run(SELECT.one.from(Books).where({ ID }));
+      if (!book) {
+        return req.reject(404, `Book with ID: ${ID} not found`);
+      }
+      
+      // Check if already archived
+      if (book.status === 'archived') {
+        return req.reject(400, `Book with ID: ${ID} is already archived`);
+      }
+      
+      const archivedAt = new Date().toISOString();
+      const archivedBy = req.user.id || 'system';
+      
+      // Update book with archive status
+      await cds.run(UPDATE(Books).set({
+        status: 'archived',
+        archivedAt: archivedAt,
+        archivedBy: archivedBy,
+        archivedReason: reason
+      }).where({ ID }));
+      
+      console.log(`Book with ID: ${ID} archived successfully. Reason: ${reason}`);
+      
+      return {
+        ID: book.ID,
+        title: book.name || book.title,
+        status: 'archived',
+        archivedAt: archivedAt,
+        archivedBy: archivedBy
+      };
+    });
+
     //Custom action implementation: prmote employee
     this.on('promoteEmployee', async(req) =>{
       const { ID } = req.data || {};

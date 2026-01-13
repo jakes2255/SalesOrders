@@ -44,6 +44,24 @@ service AdminService @(path: '/admin') {
   entity Friends as projection on db.Friends;
 
   /**
+   * @description Archives a book and updates its status.
+   *              Marks the book as out of print and logs the archival timestamp.
+   *              Restricted to admin users only.
+   * @param {UUID} ID - Book UUID
+   * @param {String} reason - Reason for archival (e.g., 'Out of Print', 'Discontinued')
+   * @returns {Object} Archival confirmation with updated book details
+   * @throws {Error} If book not found or already archived
+   */
+  @restrict: [{ grant: 'EXECUTE', to: 'admin_user' }]
+  action archiveBook(ID: UUID, reason: String) returns {
+    ID: UUID;
+    title: String;
+    status: String;
+    archivedAt: Timestamp;
+    archivedBy: String;
+  };
+
+  /**
    * @description Promotes an employee to a higher role.
    *              Restricted to HR administrators only.
    * @param {UUID} ID - Employee UUID
