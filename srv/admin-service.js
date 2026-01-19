@@ -39,7 +39,10 @@ class AdminService extends cds.ApplicationService {
     //Add 'after' Hadler for to Enrich 'Books' with calculated fields
     this.after('READ', Books, each => {
       // Build a simple display title from product fields
-      each.displayTitle = `${each.name || each.title} (${each.stockQuantity ?? 0} left)`;
+      //each.displayTitle = `${each.name || each.title} (${each.stockQuantity ?? 0} left)`;
+      //Re-factoring with Nullish Coalescing Operator (??)
+      const qty = each.stockQuantity ?? 0;
+      each.displayTitle = `${each.name ?? each.title} (${qty} left)`;
     });
     //Handle Read request on Employees
     /*this.on('READ', Employees, async(req) =>{
