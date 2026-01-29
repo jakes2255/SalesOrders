@@ -72,11 +72,12 @@ class AdminService extends cds.ApplicationService {
     this.before("CREATE", "Books", (req) => {
       req.data.price = determinePrice(req.data);
     });
-    //Handle Read request on Customers
-    this.on('READ', Customers, async(req) => {
-      const { query } = req;
-      console.log('Reading Customers with query:', query);
-      return await cds.run(SELECT.from(Customers));
+    const LOG = cds.log('admin-service');
+
+    // Handle Read request on Customers (CAP standard)
+    this.on('READ', Customers, req => {
+      LOG.debug?.('READ Customers');
+      return cds.run(req.query);
     });
     //Handle Update operation on Customer
     this.on('UPDATE', Customers, async(req) => {
