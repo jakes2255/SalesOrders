@@ -3,7 +3,7 @@ const cds = require('@sap/cds');
 const { SELECT, UPDATE, DELETE } = cds.ql;
 
 //Consume CAP Rules module
-const determinePrice = require('../rules/price-policy');
+const determinePrice = require('./rules/price-policy');
 
 class AdminService extends cds.ApplicationService {
   async init() {
