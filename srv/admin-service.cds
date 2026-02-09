@@ -12,10 +12,17 @@ service AdminService @(path: '/admin') {
    *              Provides filtered view of products with category = 'Books'.
    *              Supports full-text search across name and description fields.
    *              All operations are logged for audit compliance.
+   *              Also control exposed fields, 
    * @searchable
    */
-  entity Books as projection on db.Products
-    where category = 'Books';
+  entity Books     as
+    projection on db.Products {
+      ID,
+      name,
+      price,
+    }
+    where
+      category = 'Books';
 
   /**
    * @description Employee directory for administrative management.
