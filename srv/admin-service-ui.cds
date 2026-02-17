@@ -101,8 +101,8 @@ annotate AdminService.Books with @(
   );
 
   price @(
-    Common.Label: 'Price',
-    Semantics.amount.currencyCode: 'USD'
+    Common.Label                 : 'Price',
+    Semantics.amount.currencyCode: currency
   );
 
   stockQuantity @(
