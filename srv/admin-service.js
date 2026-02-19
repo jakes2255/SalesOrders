@@ -141,17 +141,10 @@ class AdminService extends cds.ApplicationService {
     });
 
     //Example Update operation
-    this.on('UPDATE', Books, async(req) =>{
-      const { ID } = req.params;
-      const data = req.data;
-      console.log(`Updating Book with ID: ${ID}`, data)
-      //Perform the update operation
-      const result = await cds.run(UPDATE(Books).set(data).where({ ID }));
-      if(!result || result == 0){
-        return req.reject(404, `Book with ID: ${ID} not found`);
-      }
-      console.log(`Book with ID: ${ID} updated successfully`);
-      return {message: `Book with ID: ${ID} updated successfully`};
+    this.on('UPDATE', Books, async (req) => {
+      const result = await cds.run(req.query);
+      if (!result) return req.reject(404, 'Book not found');
+      return result;
     });
 
     //Custom action implementation: archive book
