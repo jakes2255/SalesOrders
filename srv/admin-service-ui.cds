@@ -106,7 +106,13 @@ annotate AdminService.Books with @(
   );
 
   stockQuantity @(
-    Common.Label: { i18n: 'fieldStock' }
+    Common.Label: { i18n: 'fieldStock' },
+    UI.Criticality: 
+      case
+        when stockQuantity <= 5 then #Negative
+        when stockQuantity <= 10 then #Critical
+        else #Positive
+      end
   );
 
   description @(
