@@ -19,7 +19,7 @@ entity Patients {
 }
 
 entity Products : managed {
-  key ID : Integer;
+  key ID : UUID;
   name        : String(100) not null;
   description : String(500);
   price       : Decimal(10,2);
