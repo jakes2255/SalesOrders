@@ -47,16 +47,6 @@ module.exports = cds.service.impl(async function () {
             }
         }
     });
-    //study read operation
-    this.after('READ', Products, (products) => {
-        if(Array.isArray(products)){
-            products.forEach(({price, stockQuantity}, i) => {
-                if(price && stockQuantity){
-                    products[i].inventoryValue = price * stockQuantity;
-                }
-            })
-        }
-    })
 
     // Before creating an order, validate product availability
     this.before('CREATE', ProductOrders, async (req) => {
@@ -95,6 +85,16 @@ module.exports = cds.service.impl(async function () {
                 .set({ stockQuantity: { '-=': quantity } })
                 .where({ ID: product_ID });
         }
+    });
+
+    //Adding authorization, dedicated action that use 'req.user'
+    this.on('getMyOrders', async (req) => {
+    const { ProductOrders } = this.entities;
+    const userId = req.user.id; // CAP injects the logged-in user
+    
+    return await SELECT.from(ProductOrders)
+        .where({ createdBy: userId })
+        .orderBy('createdAt desc');
     });
 
     // Custom action to get low stock products
