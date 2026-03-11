@@ -49,7 +49,7 @@ annotate AdminService.Books with @(
       id:     'Analytics',
       label:  { i18n: 'facetAnalytics' },
       type:   #ChartReference,
-      target: 'StockByCategory'
+      target: '#StockByCategory'
     }
   ],
 
@@ -68,7 +68,6 @@ annotate AdminService.Books with @(
   UI.fieldGroup #StockInfo: {
     data: [
       { value: stockQuantity },
-      { value: inStock },
       { value: createdAt },
       { value: modifiedAt }
     ]
@@ -93,7 +92,7 @@ annotate AdminService.Books with @(
 
   name @(
     Common.Label:     { i18n: 'fieldTitle' },
-    Common.QuickInfo:{ i18n: 'fieldTitleInfo' }
+    Common.QuickInfo: { i18n: 'fieldTitleInfo' }
   );
 
   category @(
@@ -101,14 +100,12 @@ annotate AdminService.Books with @(
   );
 
   price @(
-    Common.Label                 : 'Price',
-    Semantics.amount.currencyCode: currency
+    Common.Label: 'Price'
   );
 
   stockQuantity @(
     Common.Label: { i18n: 'fieldStock' },
-    UI.Criticality: 
-      stockQuantity <= 5 ? #Negative : stockQuantity <= 10 ? #Critical : #Positive
+    UI.Criticality: #Positive
   );
 
   description @(
