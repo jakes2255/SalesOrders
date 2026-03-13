@@ -106,3 +106,9 @@ annotate Books with {
 annotate Authors with {
     modifiedAt @odata.etag
 }
+entity SalesOrders {
+  key ID : UUID;
+  customer : String;
+  amount : Decimal(15,2);
+  createdAt : DateTime;
+}
