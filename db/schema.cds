@@ -17,7 +17,12 @@ entity Patients {
   name  : String;
   illness: String;
 }
-
+//testing the Data modelling knowledge
+entity PurchaseOrders {
+  key ID : UUID;
+  product : String;
+  quantity : Integer;
+}
 entity Products : managed {
   key ID : UUID;
   name        : String(100) not null;
