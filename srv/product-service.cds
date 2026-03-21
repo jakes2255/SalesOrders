@@ -10,6 +10,9 @@ service ProductService {
   entity Suppliers @odata.draft.enabled @cds.redirection.target as projection on ps.Suppliers;
   entity Categories @readonly as projection on ps.Categories;
   entity ProductOrders @insertonly as projection on ps.ProductOrders;
+  entity PurchaseOrders 
+     @odata.draft.enabled 
+    as projection on ps.PurchaseOrders;
   
   // Custom views
   view ProductsWithSuppliers as select from ps.Products {

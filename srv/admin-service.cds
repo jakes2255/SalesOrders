@@ -45,6 +45,16 @@ service AdminService @(path: '/admin') {
   entity Customers as projection on db.Customers;
 
   /**
+   * @description Purchase orders for product procurement.
+   *              Accessible to procurement and admin roles.
+   */
+  @restrict: [
+    { grant: 'READ', to: 'procurement_user' },
+    { grant: 'WRITE', to: 'procurement_admin' }
+  ]
+  entity PurchaseOrders @odata.draft.enabled as projection on db.PurchaseOrders;
+
+  /**
    * @description Friends/associates network (optional).
    *              Read-only access for all authenticated users.
    */

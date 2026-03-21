@@ -19,7 +19,7 @@ entity Patients {
 }
 //testing the Data modelling knowledge
 entity PurchaseOrders {
-  key ID : UUID;
+  key ID : Integer;
   product : String;
   quantity : Integer;
 }
