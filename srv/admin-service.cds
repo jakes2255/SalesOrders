@@ -87,4 +87,7 @@ service AdminService @(path: '/admin') {
    */
   @restrict: [{ grant: 'EXECUTE', to: 'hr_admin' }]
   action promoteEmployee(ID: UUID) returns String;
+
+  @restrict: [{ grant: 'READ', to: 'any' }]
+  entity BusinessPartners as projection on db.BusinessPartners;
 }

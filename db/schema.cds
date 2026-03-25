@@ -11,6 +11,16 @@ entity Suppliers {
   country: String(50);
   products : Association to many Products on products.supplier = $self;
 }
+
+entity BusinessPartners {
+  key ID : Integer;
+  name   : String(100) not null;
+  email  : String(100);
+  phone  : String(20);
+  address: String(200);
+  city   : String(50);
+  country: String(50);
+}
 //testing knowledge of CDS entities
 entity Patients {
   key ID: Integer;

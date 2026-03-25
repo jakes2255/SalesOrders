@@ -1,0 +1,16 @@
+ID,name,email,phone,address,city,country
+1,TechCorp Solutions,contact@techcorp.com,+1-555-0101,123 Tech Street,San Francisco,USA
+2,Global Electronics Ltd,info@globalelectronics.com,+44-20-7946-0958,456 Innovation Ave,London,UK
+3,Asian Manufacturing Co,sales@asianmfg.com,+86-21-6789-1234,789 Industrial Blvd,Shanghai,China
+4,European Components GmbH,orders@eurocomp.de,+49-30-12345678,21 Component Str,Berlin,Germany
+5,Nordic Supplies AB,support@nordicsupplies.se,+46-8-123-4567,654 Supply Road,Stockholm,Sweden
+6,Maple Tech Inc,hello@mapletech.ca,+1-416-555-2233,78 Maple Ave,Toronto,Canada
+7,Southern Cross Pty Ltd,contact@scross.au,+61-2-9876-5432,12 Harbour St,Sydney,Australia
+8,Desert Trading LLC,info@deserttrading.ae,+971-4-123-4567,99 Oasis Road,Dubai,UAE
+9,Tokyo Industrial KK,sales@tokyoind.co.jp,+81-3-1234-5678,45 Shibuya St,Tokyo,Japan
+10,Bharat Equipments Pvt Ltd,info@bharatequip.in,+91-80-1234-5678,56 Industrial Area,Bangalore,India
+11,Andes Exporters SA,contact@andesexport.com,+56-2-2345-6789,34 Andes Road,Santiago,Chile
+12,African Trade Corp,sales@africantrade.co.za,+27-11-234-5678,78 Market St,Johannesburg,South Africa
+13,Baltic Logistics UAB,info@balticlogistics.lt,+370-5-123-4567,22 Port Road,Vilnius,Lithuania
+14,Alpine Goods AG,orders@alpinegoods.ch,+41-44-123-4567,10 Mountain View,Zurich,Switzerland
+15,Mediterranean Supplies SRL,info@medsupplies.it,+39-06-1234-5678,88 Coastal Rd,Rome,Italy
