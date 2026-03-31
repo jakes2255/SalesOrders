@@ -125,3 +125,17 @@ annotate AdminService.Books with @(
     UI.HiddenFilter: true
   );
 };
+annotate AdminService.BusinessPartners with @(
+  UI.lineItem: [
+    { value: address },
+    { value: city },
+    { value: country },
+    { value: email },
+
+    {
+      $Type: 'UI.DataFieldForAction',
+      Action: 'AdminService.BusinessPartners/showBPToast',
+      Label: 'Show BP'
+    }
+  ]
+);

@@ -196,6 +196,9 @@ class AdminService extends cds.ApplicationService {
       await cds.run(UPDATE(Employees).set({ role: 'Senior' }).where({ ID }));
       return { message: `Employee ${ID} is promoted successfully` };
     })
+    this.on('showBPToast', async (req) => {
+      return { message: 'Backend action triggered' };
+    });
 
     // Action: getEmployeeMessage (bound to Employees)
     // Returns a simple readiness message; accepts optional Employee ID in action payload
@@ -210,6 +213,7 @@ class AdminService extends cds.ApplicationService {
     // Always call super.init() last
     await super.init();
   }
+  
 }
 
 module.exports = { AdminService };

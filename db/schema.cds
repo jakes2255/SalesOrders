@@ -21,6 +21,7 @@ entity BusinessPartners {
   city   : String(50);
   country: String(50);
 }
+
 //testing knowledge of CDS entities
 entity Patients {
   key ID: Integer;

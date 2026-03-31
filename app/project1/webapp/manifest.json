@@ -81,6 +81,15 @@
         "uri": "i18n/i18n.properties"
       }
     },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "project1.ext.controller.ListReportExt"
+          }
+        }
+      }
+    },
     "resources": {
       "css": []
     },
