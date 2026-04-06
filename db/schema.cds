@@ -69,6 +69,7 @@ entity Books : managed, cuid {
   isbn    : String(13);
   price   : Decimal(9,2);
   currency: Currency;
+  isDeleted    : Boolean default false;
 
   category: Association to Categories;
 }
