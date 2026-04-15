@@ -203,19 +203,20 @@ this.on('reduceStock', async (req) => {
     );
   }
 
-  // Update stock
-  const newStock = product.stockQuantity - quantity;
-  await UPDATE(Products)
+  // Reduce the stock after purchase
+    let newStock = product.stockQuantity - quantity;
+
+    // Update the product with new stock value in database
+    await UPDATE(Products)
     .set({ stockQuantity: newStock })
     .where({ ID: productId });
 
-  // Optional: Emit stock update event for async integrations
-  this.emit('StockUpdated', {
-    productId,
+    // Send a notification/event that stock has changed (optional)
+    this.emit('StockUpdated', {
+    productId: productId,
     oldStock: product.stockQuantity,
-    newStock
-  });
-
+    newStock: newStock
+    });
   // Return response
   return {
     message: `Stock reduced for ${product.name}`,
