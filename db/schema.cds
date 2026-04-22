@@ -52,8 +52,7 @@ entity Categories {
   description : String(200);
 }
 
-entity ProductOrders : managed {
-  key ID : UUID;
+entity ProductOrders : managed, cuid {
   product : Association to Products;
   quantity : Integer;
   orderDate : Date;
