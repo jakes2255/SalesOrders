@@ -7,7 +7,9 @@ module.exports = cds.service.impl(async function () {
     // It forwards the incoming SELECT query to the database so
     // the usual filters, $select and $expand work as expected.
     this.on('READ', Suppliers, async (req) => {
-        return await cds.tx(req).run(req.query);
+        //avoid redundant code and use the built-in query forwarding mechanism of CAP
+        //return await cds.tx(req).run(req.query);
+        return cds.tx(req).run(req.query);
     });
 
     // Before creating a product, validate supplier exists
