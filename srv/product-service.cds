@@ -46,5 +46,10 @@ service ProductService {
   currency    : String(3) @mandatory;
   category    : String(50);
 }
-function getSystemName() returns String;
+
+  /**
+   * Retrieves the name of the current system.
+   * @returns {String} The system name
+   */
+  function getSystemName() returns String;
 }
