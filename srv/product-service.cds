@@ -46,4 +46,5 @@ service ProductService {
   currency    : String(3) @mandatory;
   category    : String(50);
 }
+function getSystemName() returns String;
 }

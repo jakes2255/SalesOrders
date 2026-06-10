@@ -226,4 +226,7 @@ this.on('reduceStock', async (req) => {
     newStock
   };
 });
+this.on('getSystemName', () => {
+    return 'CAP Product Service';
+});
 });
