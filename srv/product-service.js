@@ -227,6 +227,10 @@ this.on('reduceStock', async (req) => {
   };
 });
 this.on('getSystemName', () => {
-    return 'CAP Product Service';
+    return {
+        service: 'CAP Product Service',
+        version: '1.0.0',
+        description: 'A sample CAP service for managing products and suppliers.'
+    };
 });
 });
