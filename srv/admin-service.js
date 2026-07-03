@@ -139,6 +139,10 @@ class AdminService extends cds.ApplicationService {
           return req.reject(400, 'Changing the ISBN of a book is not allowed.');
         }
     });
+    //Autofill Creation Date    
+    this.before('CREATE', Books, req => {
+      req.data.createdAt = new Date();
+    });
 
     //Example Update operation
     this.on('UPDATE', Books, async (req) => {
