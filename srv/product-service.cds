@@ -6,7 +6,7 @@ using {
 
 
 service ProductService {
-  entity Products @odata.draft.enabled @cds.redirection.target as projection on ps.Products;
+  entity Products @odata.draft.enabled @cds.redirection.target @cds.search: { name, description } as projection on ps.Products;
   entity Suppliers @odata.draft.enabled @cds.redirection.target as projection on ps.Suppliers;
   entity Categories @readonly as projection on ps.Categories;
   entity ProductOrders @insertonly as projection on ps.ProductOrders;
