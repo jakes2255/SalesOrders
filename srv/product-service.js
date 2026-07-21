@@ -230,11 +230,13 @@ this.on('reduceStock', async (req) => {
     newStock
   };
 });
-this.on('getSystemName', () => {
+this.on('getSystemName', (req) => {
     return {
         service: 'CAP Product Service',
         version: '1.0.0',
-        description: 'A sample CAP service for managing products and suppliers.'
+        description: 'A sample CAP service for managing products and suppliers.',
+        currentUser: req.user.id,
+        serverTime: new Date().toISOString()
     };
 });
 });
