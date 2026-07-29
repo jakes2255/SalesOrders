@@ -42,7 +42,8 @@ service ProductService {
   entity Product : cuid, managed {
   name        : String(100) @mandatory;
   description : String(255);
-  price       : Decimal(9,2);
+  price       : Decimal(9,2)
+    @assert.range:[0,100000];
   currency    : String(3) @mandatory;
   category    : String(50);
 }
