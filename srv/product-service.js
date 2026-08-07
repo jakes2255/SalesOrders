@@ -198,16 +198,16 @@ this.on('reduceStock', async (req) => {
     return req.error(400, req._('product.out_of_stock_error', product.name));
   }
 
-  if (product.stockQuantity < quantity) {
+if (quantity <= 0) {
+    return req.error(400, 'Quantity must be greater than zero');
+}
+
+if (product.stockQuantity < quantity) {
     return req.error(
-      400,
-      req._('product.insufficient_stock_error', product.stockQuantity, quantity)
+        400,
+        req._('product.insufficient_stock_error', product.stockQuantity, quantity)
     );
-    //Quantity Check Input Validation
-    if(quantity <= 0) {
-      return req.error(400, 'Quantity must be greater than zero');
-    }
-  }
+}
 
   // Reduce the stock after purchase
     let newStock = product.stockQuantity - quantity;
