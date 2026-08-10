@@ -54,7 +54,7 @@ class AdminService extends cds.ApplicationService {
       return await cds.run(SELECT.from(Employees));
     });*/
     //Better Handling of 'READ' for Employees using ultra-clean JS style
-    this.on('READ', Employees, async (req) => {
+    /*this.on('READ', Employees, async (req) => {
       const { SELECT } = req.query ?? {};
 
       // Optional: lightweight debug logging (avoid console.log in productive systems)
@@ -67,7 +67,9 @@ class AdminService extends cds.ApplicationService {
           from: { ref: ['Employees'] }
         }
       });
-    });
+    });*/
+    //Even cleaner CAP style for handling 'READ' on Employees
+    this.on('READ', Employees, ({ query }) => cds.run(query));
     //Utilize CAP Rules module to determine price before sending response
     this.before("CREATE", "Books", (req) => {
       req.data.price = determinePrice(req.data);
