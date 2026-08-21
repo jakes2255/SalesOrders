@@ -1,0 +1,33 @@
+_schema-version: "3.3"
+
+ID: my-products
+version: 1.0.0
+
+modules:
+
+  - name: my-products-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: my-products-db
+      - name: my-products-auth
+
+  - name: my-products-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: my-products-db
+
+resources:
+
+  - name: my-products-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: my-products-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
