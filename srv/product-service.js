@@ -230,12 +230,12 @@ if (product.stockQuantity < quantity) {
     newStock
   };
 });
-this.on('getSystemName', (req) => {
+this.on('getSystemName', ({user}) => {
     return {
         service: 'CAP Product Service',
         version: '1.0.0',
         description: 'A sample CAP service for managing products and suppliers.',
-        currentUser: req.user.id,
+        currentUser: user.id,
         serverTime: new Date().toISOString()
     };
 });
