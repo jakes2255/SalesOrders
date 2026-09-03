@@ -93,6 +93,10 @@ module.exports = cds.service.impl(async function () {
     this.on('getMyOrders', async (req) => {
     const { ProductOrders } = this.entities;
     const userId = req.user.id; // CAP injects the logged-in user
+
+    if (!req.user.is('authenticated-user')) {
+        return req.error(401, 'User is not authenticated');
+    }
     
     return await SELECT.from(ProductOrders)
         .where({ createdBy: userId })
