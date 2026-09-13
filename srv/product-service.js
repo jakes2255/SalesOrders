@@ -240,6 +240,7 @@ this.on('getSystemName', ({user}) => {
         version: '1.0.0',
         description: 'A sample CAP service for managing products and suppliers.',
         currentUser: user.id,
+        userRoles: user.roles,
         serverTime: new Date().toISOString()
     };
 });
